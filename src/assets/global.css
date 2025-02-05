@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+* {
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #19B37E  white ;
+}
+
+html,body {
+    height: 100vh;
+    overflow-y: auto;
+    font-family: 'Inter', sans-serif;
+   
+}
+
+.font-rubik {
+    font-family: 'Rubik Vinyl', sans-serif;
+}
+
+/* Class for label */
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}

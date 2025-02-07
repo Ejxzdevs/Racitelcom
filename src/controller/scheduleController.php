@@ -8,12 +8,17 @@ class ScheduleController extends SanitizeInput {
     public function __construct(ScheduleModel $model) {
         $this->model = $model;
     }
-    public function createSchedule($data){
+    public function create($data){
         $dataSanitized = $this->sanitizeInput($data);
         return $this->model->insert($dataSanitized);
     }
 
-    public function deleteSchedule($id){
+    public function update($data){
+        $dataSanitized = $this->sanitizeInput($data);
+        return $this->model->update($dataSanitized);
+    }
+
+    public function delete($id){
         $idSanitized = filter_var($id, FILTER_VALIDATE_INT);
         return $this->model->delete(   $idSanitized);
     }
@@ -32,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     try {
         if (isset($_POST['insert'])) {
-            $status = $schedule->createSchedule($_POST);
+            $status = $schedule->create($_POST);
             echo $status === 200 
                 ? "<script>alert('Data Added Successfully')</script><script>window.location.href='../view/main.php?route=schedule'</script>"
                 : "<script>alert('Data insertion failed')</script><script>window.location.href='../view/main.php?route=schedule'</script>";
@@ -40,14 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (isset($_POST['update'])) {
             
-           $status = $inventoryController->updateInventory($_POST);
-            echo $status === 200 
-                ? "<script>alert('Inventory Update Successfully')</script><script>window.location.href='main.php?route=schedule'</script>"
-                : "<script>alert('Failed to insert property')</script>";
+           $status = $schedule->update($_POST);
+           echo $status === 200 
+           ? "<script>alert('Data Updated Successfully')</script><script>window.location.href='../view/main.php?route=schedule'</script>"
+           : "<script>alert('Data updating failed')</script><script>window.location.href='../view/main.php?route=schedule'</script>";
         }
 
         if (isset($_POST['delete'])) {
-            $status = $schedule->deleteSchedule($_POST['id']);
+            $status = $schedule->delete($_POST['id']);
             echo $status === 200 
                 ? "<script>alert('Data deleted Successfully')</script><script>window.location.href='../view/main.php?route=schedule'</script>"
                 : "<script>alert('Data deleted failed')</script><script>window.location.href='../view/main.php?route=schedule'</script>";

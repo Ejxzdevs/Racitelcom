@@ -30,7 +30,9 @@ $data = $getData->getAll();
         <tr class="border-b hover:bg-gray-50 transition-colors">
             <td class="py-2 text-center"><?php echo htmlspecialchars($display['department_id']); ?></td>
             <td class="py-2 text-center"><?php echo htmlspecialchars($display['department_name']); ?></td>
-            <td class="py-2 text-center"><?php echo htmlspecialchars($display['created_at']); ?></td>
+            <td class="py-2 text-center">
+                <?php echo htmlspecialchars(date('M d Y ', strtotime($display['created_at']))); ?>
+            </td>
             <td class="py-2 flex flex-row justify-center gap-4">
               <form action="../controller/departmentController.php" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">

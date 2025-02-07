@@ -94,6 +94,7 @@ $data = $getData->getAll();
       <div class="mb-4">
         <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
         <input type="hidden" name="update">
+        <input type="hidden" id="edit_schedule_id" name="schedule_id" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Schedule Id:" required>
         <label for="schedule_name" class="block text-sm font-medium text-gray-700">Schedule Name</label>
         <input type="text" id="edit_schedule_name" name="schedule_name" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Schedule Name:" required>
       </div>
@@ -117,6 +118,6 @@ $data = $getData->getAll();
     </form>
   </div>
 </div>
-<script src="../assets/js/popUpform.js"></script>
+<script src="../assets/js/schedule.js"></script>
 
 

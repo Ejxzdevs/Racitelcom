@@ -12,7 +12,7 @@
 ?>
 <aside class="h-full border transition-all duration-300 ease-in-out w-[250px] bg-[#282A36]" id="sidebar">
     <header class="flex justify-between items-center pr-4 h-16 pl-4">
-        <label class="text-xl font-[Rubik Vinyl]">
+        <label class="text-xl font-rubik">
             TaskUs
         </label>
         <a class="cursor-pointer" id="toggle-btn">

@@ -1,6 +1,6 @@
 <?php 
     // List of allowed routes (pages)
-    $allowedRoutes = ['home', 'dashboard','employee','schedule'];
+    $allowedRoutes = ['home', 'dashboard','employee','schedule','department'];
     $route = isset($_GET['route']) ? $_GET['route'] : 'home';
     $route = strip_tags($route);
     $route = preg_replace("/[^a-zA-Z0-9_-]/", "", $route);
@@ -31,6 +31,9 @@
         </li>
         <li class="ps-4 h-10 flex items-center">
             <a href="?route=schedule">Schedule</a>
+        </li>
+        <li class="ps-4 h-10 flex items-center">
+            <a href="?route=department">department</a>
         </li>
     </ul>
 </aside>

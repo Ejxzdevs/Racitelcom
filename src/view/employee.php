@@ -1,3 +1,10 @@
+<?php 
+require_once '../services/scheduleApi.php';
+$schedule = new ScheduleApi();
+$Dataschedule = $schedule->getAll();
+
+?>
+
 <div class="container flex flex-col"  style="padding: 0 2rem;">
     <div class="h-[3rem] flex items-center justify-between ">
         <label class="text-gray-800 text-[1.5rem] font-bold font-inter">
@@ -75,9 +82,9 @@
         <label for="employeeType" class="block text-sm font-medium text-gray-700">Schedule</label>
         <select id="employeeType" name="employeeType" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
           <option value="" disabled selected>Select Schedule</option>
-          <option value="Day Shift">Day Shift</option>
-          <option value="Night Shift">Night Shift</option>
-          <option value="Graveyard">Graveyard</option>
+            <?php foreach($Dataschedule as $data): ?>
+              <option value="<?php echo $data['schedule_id'] ?>"><?php echo $data['schedule_name'] ?></option>
+            <?php endforeach; ?> 
         </select>
       </div>
       <div class="mb-4">
@@ -101,4 +108,4 @@
     </form>
   </div>
 </div>
-<script src="../assets/js/popUpform.js"></script>
+<script src="../assets/js/employee.js"></script>

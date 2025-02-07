@@ -16,7 +16,7 @@ $data = $getData->getAll();
         </button>
     </div>
     <div class="overflow-x-auto" >
-      <table class="min-w-full w-full table-fixed rounded-lg bg-white shadow-md overflow-hidden" >
+      <table class="w-full table-fixed rounded-lg bg-white shadow-md overflow-hidden" >
         <thead class="bg-gray-200">
           <tr class="text-gray-700 border-b">
             <th class="py-2 text-center">Id</th>
@@ -40,7 +40,7 @@ $data = $getData->getAll();
                   <i class="fas fa-trash"></i>
                 </button>
               </form>
-              <a href="javascript:void(0);" class="edit-link text-blue-500 hover:text-blue-700 "   data='<?php echo htmlspecialchars(json_encode($display), ENT_QUOTES, 'UTF-8'); ?>'>
+              <a href="javascript:void(0);" class="edit-link text-blue-500 hover:text-blue-700"  data='<?php echo htmlspecialchars(json_encode($display), ENT_QUOTES, 'UTF-8'); ?>'>
                 <i class="fas fa-edit"></i>
               </a>
             </td>

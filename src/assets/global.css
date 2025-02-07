@@ -4,13 +4,12 @@
     box-sizing: border-box;
     scrollbar-width: thin;
     scrollbar-color: #19B37E  white ;
+    font-family: 'Inter', sans-serif;
 }
 
 html,body {
     height: 100vh;
     overflow-y: auto;
-    font-family: 'Inter', sans-serif;
-   
 }
 
 .font-rubik {

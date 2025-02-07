@@ -42,7 +42,7 @@ $data = $getData->getAll();
                   <i class="fas fa-trash"></i>
                 </button>
               </form>
-              <a href="javascript:void(0);" class="edit-link text-blue-500 hover:text-blue-700"  data='<?php echo htmlspecialchars(json_encode($display), ENT_QUOTES, 'UTF-8'); ?>'>
+              <a href="javascript:void(0);" class="edit-link text-blue-500 hover:text-blue-700 cursor-pointer"  data='<?php echo htmlspecialchars(json_encode($display), ENT_QUOTES, 'UTF-8'); ?>'>
                 <i class="fas fa-edit"></i>
               </a>
             </td>

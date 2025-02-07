@@ -36,11 +36,11 @@ $data = $getData->getAll();
                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
                 <input type="hidden" name="delete">
                 <input type="text" name="id" value="<?php echo htmlspecialchars( $display['department_id'] );?>" hidden>
-                <button class="text-red-500 hover:text-red-700 focus:outline-none">
+                <button class="text-red-500 hover:text-red-700 focus:outline-none cursor-pointer">
                   <i class="fas fa-trash"></i>
                 </button>
               </form>
-              <a href="javascript:void(0);" class="edit-link text-blue-500 hover:text-blue-700"  data='<?php echo htmlspecialchars(json_encode($display), ENT_QUOTES, 'UTF-8'); ?>'>
+              <a href="javascript:void(0);" class="edit-link text-blue-500 hover:text-blue-700 cursor-pointer"  data='<?php echo htmlspecialchars(json_encode($display), ENT_QUOTES, 'UTF-8'); ?>'>
                 <i class="fas fa-edit"></i>
               </a>
             </td>

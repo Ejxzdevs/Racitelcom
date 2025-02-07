@@ -23,6 +23,7 @@ $data = $getData->getAll();
             <th class="py-2 text-center">Name</th>
             <th class="py-2 text-center">Time Start</th>
             <th class="py-2 text-center">Time End</th>
+            <th class="py-2 text-center">Created At</th>
             <th class="py-2 text-center">Action</th>
           </tr>
         </thead>
@@ -33,6 +34,9 @@ $data = $getData->getAll();
             <td class="py-2 text-center"><?php echo htmlspecialchars($display['schedule_name']); ?></td>
             <td class="py-2 text-center"><?php echo htmlspecialchars((new DateTime($display['time_start']))->format('g:i A')); ?></td>
             <td class="py-2 text-center"><?php echo htmlspecialchars((new DateTime($display['time_end']))->format('g:i A')); ?></td>
+            <td class="py-2 text-center">
+                <?php echo htmlspecialchars(date('M d Y ', strtotime($display['created_at']))); ?>
+            </td>
             <td class="py-2 flex flex-row justify-center gap-4">
               <form action="../controller/scheduleController.php" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">

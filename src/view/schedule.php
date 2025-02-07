@@ -6,7 +6,7 @@ $getData = new ScheduleApi();
 $data = $getData->getAll();
 ?>
 <div class="container flex flex-col gap-2 text-[14px]"  style="padding: 0 2rem;">
-    <div class="h-[3rem] flex items-center justify-between ">
+    <div class="h-[4rem] flex items-center justify-between ">
         <label class="text-gray-800 text-[1.3rem] font-bold">
             Schedule List
         </label>
@@ -38,7 +38,7 @@ $data = $getData->getAll();
                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
                 <input type="hidden" name="delete">
                 <input type="text" name="id" value="<?php echo htmlspecialchars( $display['schedule_id'] );?>" hidden>
-                <button class="text-red-500 hover:text-red-700 focus:outline-none">
+                <button class="text-red-500 hover:text-red-700 focus:outline-none cursor-pointer">
                   <i class="fas fa-trash"></i>
                 </button>
               </form>

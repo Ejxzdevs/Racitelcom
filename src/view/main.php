@@ -1,3 +1,4 @@
+<?php require_once '../helper/check_token.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +15,8 @@
             <?php require_once '../components/sidebar.php'; ?>
         </nav>
         <div class="w-full flex flex-col">
-            <header class="h-[11%] bg-gray-800 text-white flex items-center justify-center">
-                i am header
+            <header class="h-[11%] bg-gray-800 ">
+                <?php require_once '../components/header.php' ?>
             </header>
             <main class="border h-[89%]">
                 <?php require_once $page; ?>

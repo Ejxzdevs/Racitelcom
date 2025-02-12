@@ -16,7 +16,7 @@ if(isset($_COOKIE['token'])) {
          // Expire the cookie to delete it
         setcookie('token', '', time() - 3600, "/", "", true, true);
         echo '<script>alert("Your session has expired. Please login again.");</script>';
-        echo '<script>setTimeout(function() { window.location.href = "./../index.php"; }, 2000);</script>';
+        echo '<script>setTimeout(function() { window.location.href = "../../index.php"; }, 2000);</script>';
     }
 } else {
     header("Location: ../../index.php");

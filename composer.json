@@ -1,0 +1,9 @@
+{
+    "name": "my-vendor/payroll",
+    "description": "A Paymaster is a payroll management system",
+    "require": {
+        "firebase/php-jwt": "^6.11",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "license": "MIT"
+}

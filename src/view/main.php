@@ -14,11 +14,11 @@
         <nav class="h-full">
             <?php require_once '../components/sidebar.php'; ?>
         </nav>
-        <div class="w-full flex flex-col">
-            <header class="h-[11%] bg-gray-800 ">
+        <div class="w-full flex flex-col bg-[#F1F2F4]">
+            <header class="h-[10%] p-[5px] ">
                 <?php require_once '../components/header.php' ?>
             </header>
-            <main class="border h-[89%]">
+            <main class="h-[90%]">
                 <?php require_once $page; ?>
             </main>
         </div>

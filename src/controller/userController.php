@@ -20,13 +20,16 @@ class UserController extends SanitizeInput {
         $user = $this->model->login($dataSanitized);
 
         if ($user) {
+            $_SESSION['user_type'] = $user['user_type'];
+
             $issuedAt = time();
             $expirationTime = $issuedAt + 3600;
             $payload = array(
                 "iat" => $issuedAt,
                 "exp" => $expirationTime,
                 "id" => $user['id'],
-                "email" => $user['user_email']
+                "email" => $user['user_email'],
+                "user_type" => $user['user_type']
             );
 
             // Encode the JWT

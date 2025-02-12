@@ -18,9 +18,9 @@ class CsrfHelper
     public static function validateToken($token)
     {
         if (!isset($_SESSION['csrf_token']) || $_SESSION['csrf_token'] !== $token) {
-            return false; // Invalid token
+            return false;
         }
-        return true; // Valid token
+        return true;
     }
 
     // Regenerate the CSRF token

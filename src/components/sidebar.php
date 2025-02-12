@@ -12,7 +12,7 @@
     }
     $page = $route . '.php';
 ?>
-<aside class="h-full border transition-all duration-300 ease-in-out w-[250px] bg-[#666B74] text-white" id="sidebar">
+<aside class="h-full border transition-all duration-300 ease-in-out w-[250px] bg-[#1F2937] text-white" id="sidebar">
     <header class="flex justify-between items-center pr-4 h-16 pl-4">
         <label class="ps-3 text-[22px] font-rubik path">
             Paymaster
@@ -35,24 +35,25 @@
             </a>
         </li>
         <li class="ps-6 h-10 flex items-center">
-            <a href="?route=schedule" class="flex flex-row gap-3 hover:text-blue-500">
-                <i class="fas fa-calendar-alt"></i>
-                <span class="path ">Schedule</span>
-            </a>
-        </li>
-        <li class="ps-6 h-10 flex items-center">
-            <a href="?route=position" class="flex flex-row gap-3 hover:text-blue-500">
-                <i class="fas fa-building"></i> 
-                <span class="path " >Position</span>
-            </a>
-        </li>
-        <li class="ps-6 h-10 flex items-center">
             <a href="?route=department" class="flex flex-row gap-3 hover:text-blue-500">
                 <i class="fas fa-building"></i> 
                 <span class="path " >Department</span>
             </a>
         </li>
+        <li class="ps-6 h-10 flex items-center">
+            <a href="?route=position" class="flex flex-row gap-3 hover:text-blue-500">
+                <i class="fas fa-user-tie"></i>
+                <span class="path " >Position</span>
+            </a>
+        </li>
+        <li class="ps-6 h-10 flex items-center">
+            <a href="?route=schedule" class="flex flex-row gap-3 hover:text-blue-500">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="path ">Schedule</span>
+            </a>
+        </li>
     </ul>
+
 </aside>
 <script>
     const sidebar = document.getElementById('sidebar');

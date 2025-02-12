@@ -1,4 +1,4 @@
-<div class="h-full w-full flex flex-row bg-[#FEFEFE] rounded-md shadow-sm" >
+<div class="h-full w-full flex flex-row bg-[#FEFEFE] rounded-md shadow-sm cursor-pointer" >
     <div class="w-1/2 h-full" >
         <!-- Empty section -->
     </div>
@@ -14,7 +14,7 @@
                 <a onclick="profileOption();">
                     <i class="fas fa-user-circle text-[#666B74] text-[25px]"></i>
                 </a>
-                <div id="profile" class="hidden h-[220px] w-[180px] absolute top-9 right-4 shadow-sm rounded-md bg-[#FEFEFE] font-semibold cursor-pointer">
+                <div id="profile" class="hidden h-[220px] w-[180px] absolute top-9 right-4 shadow-sm rounded-md bg-[#FEFEFE] font-semibold ">
                     <ul>
                         <li>
                             <div class="flex flex-row items-center gap-5 ps-5 py-2 border-b border-gray-300 text-gray-500">
@@ -35,10 +35,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    function profileOption() {
-        let profile = document.querySelector('#profile');
-        profile.classList.toggle('hidden');
-    }
-</script>
+<script src="../assets/js/header.js"></script>

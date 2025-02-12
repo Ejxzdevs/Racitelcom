@@ -10,11 +10,11 @@
                 <p class="font-semibold"><?php echo $token_decoded->email ?></p>
                 <p><?php echo $token_decoded->user_type ?></p>
             </div>
-            <div class="flex justify-center items-center px-2">
-                <a onclick="profileOption();" class="cursor-pointer">
+            <div class="flex justify-center items-center px-2 ">
+                <a onclick="profileOption();">
                     <i class="fas fa-user-circle text-[#666B74] text-[25px]"></i>
                 </a>
-                <div id="profile" class="hidden h-[220px] w-[180px] absolute top-9 right-4 shadow-sm rounded-md bg-[#FEFEFE] font-semibold">
+                <div id="profile" class="hidden h-[220px] w-[180px] absolute top-9 right-4 shadow-sm rounded-md bg-[#FEFEFE] font-semibold cursor-pointer">
                     <ul>
                         <li>
                             <div class="flex flex-row items-center gap-5 ps-5 py-2 border-b border-gray-300 text-gray-500">
@@ -26,7 +26,7 @@
                             <form class="flex flex-row items-center gap-5 ps-5 py-2 border-b border-gray-300 text-gray-500 " action="../controller/userController.php" method="post">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <input type="hidden" name="logout">
-                                <button type="submit">Logout</button>
+                                <button type="submit" class="cursor-pointer">Logout</button>
                             </form>
                         </li>
                     </ul>

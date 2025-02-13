@@ -1,7 +1,7 @@
 <?php
 require_once '../helper/csrf.php';
 require_once '../helper/sanitizeInput.php';
-require_once '../model/HolidayModel.php';
+require_once '../model/holidayModel.php';
 
 class HolidayController extends SanitizeInput { 
     private $model;

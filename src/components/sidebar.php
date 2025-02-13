@@ -1,7 +1,7 @@
 <?php 
     session_start();
     // List of allowed routes (pages)
-    $allowedRoutes = ['home', 'dashboard','employee','schedule','department','position'];
+    $allowedRoutes = ['home', 'dashboard','employee','schedule','department','position','leave'];
     $route = isset($_GET['route']) ? $_GET['route'] : 'home';
     $route = strip_tags($route);
     $route = preg_replace("/[^a-zA-Z0-9_-]/", "", $route);
@@ -50,6 +50,12 @@
             <a href="?route=schedule" class="flex flex-row gap-3 hover:text-blue-500">
                 <i class="fas fa-calendar-alt"></i>
                 <span class="path ">Schedule</span>
+            </a>
+        </li>
+        <li class="ps-6 h-10 flex items-center">
+            <a href="?route=leave" class="flex flex-row gap-3 hover:text-blue-500">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="path ">Leave</span>
             </a>
         </li>
     </ul>

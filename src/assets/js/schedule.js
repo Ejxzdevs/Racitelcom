@@ -44,11 +44,3 @@ const editModal = document.getElementById("editmodal");
   });
 
 });
-
-// for import excel file
-function updateFileName() {
-  var fileInput = document.getElementById('file');
-  var fileName = fileInput.files[0] ? fileInput.files[0].name : "Choose File";
-  var fileLabel = document.getElementById('file_choose');
-  fileLabel.textContent = fileName;
-}

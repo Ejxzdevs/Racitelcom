@@ -1,3 +1,5 @@
+// MODAL
+
 document.addEventListener('DOMContentLoaded', function() {
 
   const openModal = document.getElementById("openModal");
@@ -13,8 +15,8 @@ closeModal.addEventListener("click", function() {
   modal.classList.add("hidden");
 });
 
-// HANDLE EDIT MODAL
 
+// HANDLE EDIT MODAL
 // EDIT FORM
 const editModal = document.getElementById("editmodal");
     document.querySelectorAll('.edit-link').forEach(link => {
@@ -40,4 +42,13 @@ const editModal = document.getElementById("editmodal");
   closeEditModal.addEventListener("click", function() {
       editModal.classList.add("hidden");
   });
+
 });
+
+// for import excel file
+function updateFileName() {
+  var fileInput = document.getElementById('file');
+  var fileName = fileInput.files[0] ? fileInput.files[0].name : "Choose File";
+  var fileLabel = document.getElementById('file_choose');
+  fileLabel.textContent = fileName;
+}

@@ -2,9 +2,16 @@
 require_once '../services/attendanceApi.php';
 require_once '../helper/csrf.php';
 $csrf_token = CsrfHelper::generateToken();
-$getData = new AttendanceApi();
-$data = $getData->getAll();
+
+if (isset($_SESSION['attendance'])) {
+    $data = $_SESSION['attendance'];
+    $filter = $_SESSION['filters'];
+} else {
+    $getData = new AttendanceApi();
+    $data = $getData->getAll();
+}
 ?>
+
 <div class="container flex flex-col gap-2 text-[14px]"  style="padding: 0 2rem;">
     <div class="my-2" >
       <label class="text-gray-800 text-[1.3rem] font-bold">
@@ -13,17 +20,17 @@ $data = $getData->getAll();
     </div>
     <div class="h-[4rem] flex flex-row ">
       <div class="w-1/2 flex justify-start items-center" >
-        <form class="space-y-4 flex flex-row gap-2">
+        <form action="" method="POST" class="space-y-4 flex flex-row gap-2">
           <div>
             <label for="startDate" class="block text-sm font-medium text-gray-700">Start Date</label>
-            <input type="date" id="startDate" name="startDate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            <input type="date" id="startDate" name="startDate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
           </div>
           <div>
             <label for="endDate" class="block text-sm font-medium text-gray-700">End Date</label>
-            <input type="date" id="endDate" name="endDate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            <input type="date" id="endDate" name="endDate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required />
           </div>
           <div class="flex items-center justify-center pt-2" >
-            <button type="submit" class="w-[120px] py-[7px] border-1 border-gray-300 px-2 border-[#19B37E] text-gray-700 hover:text-blue-500 cursor-pointer shadow-md rounded-sm">
+            <button type="submit" name="filter" class="w-[120px] py-[7px] border-1 border-gray-300 px-2 border-[#19B37E] text-gray-700 hover:text-blue-500 cursor-pointer shadow-md rounded-sm">
               Filter
             </button>
           </div>
@@ -61,6 +68,7 @@ $data = $getData->getAll();
         </thead>
       <tbody>
         <?php foreach ($data as $display): ?>
+         
         <tr class="border-b hover:bg-gray-50 transition-colors">
             <td class="py-2 text-center"><?php echo htmlspecialchars($display['attendance_id']); ?></td>
             <td class="py-2 text-center"><?php echo htmlspecialchars($display['fullname']); ?></td>
@@ -86,6 +94,7 @@ $data = $getData->getAll();
               </a>
             </td>
         </tr>
+    
         <?php endforeach; ?>
         </tbody>
       </table>
@@ -174,5 +183,9 @@ $data = $getData->getAll();
     </form>
   </div>
 </div>
-<script src="../assets/js/schedule.js"></script>
+<script src="../assets/js/attendance.js"></script>
+<script>
+  document.getElementById('startDate').value = "<?php echo $filter['start_date']; ?>";
+  document.getElementById('endDate').value = "<?php echo $filter['end_date']; ?>";
+</script>
 

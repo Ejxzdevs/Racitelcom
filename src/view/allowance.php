@@ -21,7 +21,7 @@ $data = $getData->getAll();
           <tr class="text-gray-700 border-b">
             <th class="py-2 text-center">Id</th>
             <th class="py-2 text-center">Name</th>
-            <th class="py-2 text-center">Rate</th>
+            <th class="py-2 text-center">Amount</th>
             <th class="py-2 text-center">Created At</th>
             <th class="py-2 text-center">Status</th>
             <th class="py-2 text-center">Action</th>
@@ -71,7 +71,7 @@ $data = $getData->getAll();
         <input type="text" id="allowance_name" name="allowance_name" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name:" required>
       </div>
       <div class="mb-4">
-        <label for="allowance_rate" class="block text-sm font-medium text-gray-700">Rate</label>
+        <label for="allowance_rate" class="block text-sm font-medium text-gray-700">Amount</label>
         <input type="text" id="allowance_rate" name="allowance_rate" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
       </div>
       <!-- Submit Button -->
@@ -102,7 +102,7 @@ $data = $getData->getAll();
         <input type="text" id="edit_allowance_name" name="allowance_name" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name:" required>
       </div>
       <div class="mb-4">
-        <label for="edit_allowance_rate" class="block text-sm font-medium text-gray-700">Rate</label>
+        <label for="edit_allowance_rate" class="block text-sm font-medium text-gray-700">Amount</label>
         <input type="text" id="edit_allowance_rate" name="allowance_rate" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
       </div>
       <div class="mb-4">

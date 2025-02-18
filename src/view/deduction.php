@@ -67,7 +67,7 @@ $data = $getData->getAll();
       <div class="mb-4">
         <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
         <input type="hidden" name="insert">
-        <label for="deduction_name" class="block text-sm font-medium text-gray-700">deduction Name</label>
+        <label for="deduction_name" class="block text-sm font-medium text-gray-700">Deduction Name</label>
         <input type="text" id="deduction_name" name="deduction_name" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name:" required>
       </div>
       <div class="mb-4">
@@ -98,7 +98,7 @@ $data = $getData->getAll();
         <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
         <input type="hidden" name="update">
         <input type="hidden" id="id" name="deduction_id" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-        <label for="edit_deduction_name" class="block text-sm font-medium text-gray-700">deduction Name</label>
+        <label for="edit_deduction_name" class="block text-sm font-medium text-gray-700">Deduction Name</label>
         <input type="text" id="edit_deduction_name" name="deduction_name" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name:" required>
       </div>
       <div class="mb-4">

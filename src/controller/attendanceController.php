@@ -13,11 +13,6 @@ class AttendanceController extends SanitizeInput {
         return $this->model->insert($dataSanitized);
     }
 
-    // public function update($data){
-    //     $dataSanitized = $this->sanitizeInput($data);
-    //     return $this->model->update($dataSanitized);
-    // }
-
     public function delete($id){
         $idSanitized = filter_var($id, FILTER_VALIDATE_INT);
         return $this->model->delete(   $idSanitized);
@@ -42,14 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 ? "<script>alert('Data Added Successfully')</script><script>window.location.href='../view/main.php?route=attendance'</script>"
                 : "<script>alert('Data insertion failed')</script><script>window.location.href='../view/main.php?route=attendance'</script>";
         }
-
-        // if (isset($_POST['update'])) {
-            
-        //    $status = $attendance->update($_POST);
-        //    echo $status === 200 
-        //    ? "<script>alert('Data Updated Successfully')</script><script>window.location.href='../view/main.php?route=attendance'</script>"
-        //    : "<script>alert('Data updating failed')</script><script>window.location.href='../view/main.php?route=attendance'</script>";
-        // }
 
         if (isset($_POST['delete'])) {
             $status = $attendance->delete($_POST['id']);

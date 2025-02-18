@@ -22,7 +22,7 @@
         </a>
     </header>
   <ul class="space-y-4 pt-5 flex flex-col gap-3">
-    <li class="ps-6" >
+    <li class="ps-6">
         <a href="?route=dashboard" class="flex flex-row items-center items-center gap-3 hover:text-blue-500" >
             <i class="fas fa-columns text-[14px]"></i>
             <span class="path">Dashboard</span>
@@ -34,60 +34,77 @@
             <span class="path " >Employee</span>
         </a>
     </li>
-    <li class="ps-6">
-        <a href="?route=department" class="flex flex-row items-center gap-3 hover:text-blue-500">
-            <i class="fas fa-building text-[14px]"></i> 
-            <span class="path">Department</span>
-        </a>
-    </li>
-    <li class="ps-6">
-        <a href="?route=position" class="flex flex-row items-center gap-3 hover:text-blue-500">
-            <i class="fas fa-briefcase text-[14px]"></i>
-            <span class="path">Position</span>
-        </a>
-    </li>
+
     <li class="ps-6">
         <a href="?route=attendance" class="flex flex-row items-center gap-3 hover:text-blue-500">
             <i class="fas fa-clipboard-list text-[14px]"></i>
             <span class="path">Attendance</span>
         </a>
     </li>
-    <li class="ps-6">
-        <a href="?route=schedule" class="flex flex-row items-center gap-3 hover:text-blue-500">
-            <i class="fas fa-clock text-[14px]"></i>
-            <span class="path">Schedule</span>
+    
+    <!-- Management Menu -->
+    <li class="menu-item">
+        <a href="#" class="ms-6 toggle-menu flex flex-row items-center justify-between gap-3 hover:text-blue-500">
+            <div>
+                <i class="fas fa-cogs text-[14px]"></i>
+                <span class="path ms-1">Management</span>
+            </div> 
+            <i class="arrowIcon fas fa-arrow-right transition-transform me-4"></i>
         </a>
+        <ul class="bg-gray-600 sub-menu max-h-0 overflow-hidden transition-all duration-300 ease-out flex flex-col gap-1 ps-4">
+            <li class="ps-5 pt-1">
+                <a href="?route=department" class="text-white block p-2 rounded">
+                    <i class="fas fa-building text-[14px] ms-1"></i>
+                    <span class="path ms-3">Department</span>
+                </a>
+            </li>
+            <li class="ps-6">
+                <a href="?route=position" class="text-white block p-2 rounded">
+                    <i class="fas fa-briefcase text-[14px]"></i>  
+                    <span class="path ms-2">Position</span>
+                </a>
+            </li>
+            <li class="ps-6">
+                <a href="?route=schedule" class="text-white block p-2 rounded">
+                    <i class="fas fa-clock text-[14px]"></i>
+                    <span class="path ms-2">Schedule</span>
+                </a>
+            </li>
+            <li class="ps-6">
+                <a href="?route=holiday" class="text-white block p-2 rounded">
+                    <i class="fas fa-sun text-[14px]"></i>
+                    <span class="path ms-2">Holiday</span>
+                </a>
+            </li>
+        </ul>
     </li>
+
+    
+    
     <li class="menu-item">
         <a href="#" class="ms-6 toggle-menu flex flex-row items-center justify-between gap-3 hover:text-blue-500">
             <div>
                 <i class="fas fa-file text-[14px]"></i>
                 <span class="path ms-3"> Leave</span>
             </div> 
-            <i id="arrowIcon" class="path fas fa-arrow-right transition-transform me-4"></i>
+            <i class="arrowIcon fas fa-arrow-right transition-transform me-4"></i>
         </a>
-        
-      <ul class="bg-gray-600 sub-menu max-h-0 overflow-hidden transition-all duration-300 ease-out flex flex-col gap-1 ps-4">
-        <li class="ps-5 pt-1" >
-            <a href="?route=leave" class="text-white block p-2 rounded">
-                <i class="fas fa-list text-[14px]"></i>
-                <span class="path ms-2"> List</span>
-            </a>
-        </li>
-        <li class="ps-6">
-            <a href="?route=fileLeave" class="text-white block p-2 rounded">
-                <i class="fas fa-file text-[14px]"></i>  
-                <span class="path ms-2">File</span>
-            </a>
-        </li>
-      </ul>
+        <ul class="bg-gray-600 sub-menu max-h-0 overflow-hidden transition-all duration-300 ease-out flex flex-col gap-1 ps-4">
+            <li class="ps-5 pt-1" >
+                <a href="?route=leave" class="text-white block p-2 rounded">
+                    <i class="fas fa-list text-[14px]"></i>
+                    <span class="path ms-2"> List</span>
+                </a>
+            </li>
+            <li class="ps-6">
+                <a href="?route=fileLeave" class="text-white block p-2 rounded">
+                    <i class="fas fa-file text-[14px]"></i>  
+                    <span class="path ms-2">File</span>
+                </a>
+            </li>
+        </ul>
     </li>
-    <li class="ps-6">
-        <a href="?route=holiday" class="flex flex-row items-center gap-3 hover:text-blue-500">
-            <i class="fas fa-sun text-[14px]"></i>
-            <span class="path">Holiday</span>
-        </a>
-    </li>
+
     <li class="ps-6">
         <a href="?route=payroll" class="flex flex-row items-center gap-3 hover:text-blue-500">
             <i class="fas fa-sun text-[14px]"></i>
@@ -96,6 +113,7 @@
     </li>
   </ul>
 </aside>
+
 <script>
   // Select all elements with the class "toggle-menu"
   const menuItems = document.querySelectorAll('.toggle-menu');
@@ -107,6 +125,9 @@
 
       // Find the sub-menu under the clicked item
       const subMenu = this.nextElementSibling;
+      const arrowIcon = this.querySelector('.arrowIcon'); // Get the specific arrow icon for this menu item
+
+      // Toggle the rotation of the arrow icon
       arrowIcon.classList.toggle('rotate-90');
 
       // Toggle the max-height to animate the expansion/collapse
@@ -121,43 +142,40 @@
   });
 
   const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggle-btn');
-    const pathElements = document.querySelectorAll('.path');
-    let isMinimized = document.cookie.replace(/(?:(?:^|.*;\s*)toggle\s*=\s*([^;]*).*$)|^.*$/, "$1") === 'false';
-    
-    function toggleSidebar() {
-        if(isMinimized === false){
-            isMinimized = true;
-            sidebar.style.width = '80px';
-            pathElements.forEach(path => {
-                path.style.display ='none';
-            });
-            document.cookie = "toggle=false; path=/";
-         
-            
-        }else{
-            isMinimized = false;
-            sidebar.style.width = '250px';
-            pathElements.forEach(path => {
-                path.style.display ='inline';
-            });
-            document.cookie = "toggle=true; path=/";
-            
-        }
-    }
+  const toggleBtn = document.getElementById('toggle-btn');
+  const pathElements = document.querySelectorAll('.path');
+  let isMinimized = document.cookie.replace(/(?:(?:^|.*;\s*)toggle\s*=\s*([^;]*).*$)|^.*$/, "$1") === 'false';
 
-    if (isMinimized) {
+  function toggleSidebar() {
+    if(isMinimized === false){
+        isMinimized = true;
         sidebar.style.width = '80px';
         pathElements.forEach(path => {
             path.style.display ='none';
         });
- 
+        document.cookie = "toggle=false; path=/";
     } else {
+        isMinimized = false;
         sidebar.style.width = '250px';
         pathElements.forEach(path => {
             path.style.display ='inline';
         });
+        document.cookie = "toggle=true; path=/";
     }
+  }
 
-    toggleBtn.addEventListener('click', toggleSidebar);
+  if (isMinimized) {
+    sidebar.style.width = '80px';
+    pathElements.forEach(path => {
+        path.style.display ='none';
+    });
+  } else {
+    sidebar.style.width = '250px';
+    pathElements.forEach(path => {
+        path.style.display ='inline';
+    });
+  }
+
+  toggleBtn.addEventListener('click', toggleSidebar);
 </script>
+

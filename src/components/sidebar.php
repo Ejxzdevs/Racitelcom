@@ -1,7 +1,7 @@
 <?php 
     session_start();
     // List of allowed routes (pages)
-    $allowedRoutes = ['home', 'dashboard','employee','schedule','department','position','leave','holiday','fileLeave','attendance','payroll'];
+    $allowedRoutes = ['home', 'dashboard','employee','schedule','department','position','leave','holiday','fileLeave','attendance','payroll','allowance','deduction'];
     $route = isset($_GET['route']) ? $_GET['route'] : 'home';
     $route = strip_tags($route);
     $route = preg_replace("/[^a-zA-Z0-9_-]/", "", $route);
@@ -74,6 +74,18 @@
                 <a href="?route=holiday" class="text-white block p-2 rounded">
                     <i class="fas fa-sun text-[14px]"></i>
                     <span class="path ms-2">Holiday</span>
+                </a>
+            </li>
+            <li class="ps-6">
+                <a href="?route=allowance" class="text-white block p-2 rounded">
+                    <i class="fas fa-sun text-[14px]"></i>
+                    <span class="path ms-2">Allowance</span>
+                </a>
+            </li>
+            <li class="ps-6">
+                <a href="?route=deduction" class="text-white block p-2 rounded">
+                    <i class="fas fa-sun text-[14px]"></i>
+                    <span class="path ms-2">Deduction</span>
                 </a>
             </li>
         </ul>

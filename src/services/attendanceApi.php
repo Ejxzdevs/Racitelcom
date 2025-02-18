@@ -5,11 +5,13 @@ class AttendanceApi extends Database {
     public function getAll() {
         $connection = parent::openConnection();
         try {
+            $currentDate = date('Y-m-d');
             $stmt = $connection->prepare("
             		SELECT * 
                         FROM attendances 
                         INNER JOIN employees ON attendances.employee_id = employees.employee_id
-                        WHERE attendances.is_deleted = 0;");
+                        WHERE attendances.is_deleted = 0 AND attendances.attendance_date = :current_date");
+            $stmt->bindParam(':current_date', $currentDate, PDO::PARAM_STR);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             return $data;
@@ -38,7 +40,7 @@ class AttendanceApi extends Database {
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             return $data;
         } catch (PDOException $e) {
-            // $connection->rollBack();
+            $connection->rollBack();
             error_log("Error: " . $e->getMessage());
         } finally {
             // parent::closeConnection();  

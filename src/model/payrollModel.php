@@ -16,8 +16,19 @@ class PayrollModel extends Database {
             $stmt->bindParam(4, $data['deduction_status']);
             $stmt->bindParam(5, $data['pay_date']);
             $stmt->execute();
+
+            $getAttendance = $connection->prepare('SELECT * FROM attendances
+                INNER JOIN employees on employees.employee_id = attendances.employee_id 
+                WHERE attendances.attendance_date BETWEEN ? AND ?
+            ');
+            $stmt->bindParam(1, $data['start_date']);
+            $stmt->bindParam(2, $data['end_date']);
+            $getAttendance->execute();
+            $employee_attendance = $getAttendance->fetchAll(PDO::FETCH_ASSOC); 
+            print_r($employee_attendance);
+
             $connection->commit();
-            return 200;
+            // return 200;
         } catch (PDOException $e) {
             $connection->rollBack();
             echo "Error: " . $e->getMessage();

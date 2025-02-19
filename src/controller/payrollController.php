@@ -38,9 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
         if (isset($_POST['insert'])) {
             $status = $payroll->create($_POST);
-            echo $status === 200 
-                ? "<script>alert('Data Added Successfully')</script><script>window.location.href='../view/main.php?route=payroll'</script>"
-                : "<script>alert('Data insertion failed')</script><script>window.location.href='../view/main.php?route=payroll'</script>";
+            // echo $status === 200 
+            //     ? "<script>alert('Data Added Successfully')</script><script>window.location.href='../view/main.php?route=payroll'</script>"
+            //     : "<script>alert('Data insertion failed')</script><script>window.location.href='../view/main.php?route=payroll'</script>";
         }
 
         if (isset($_POST['update'])) {

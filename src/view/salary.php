@@ -40,7 +40,7 @@ if (isset($_GET['data'])) {
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Full Name</th>
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Department</th>
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Position</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Total Earnings</th>
+                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Gross Salary</th>
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Worked Days</th>
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Action</th>
                     </tr>

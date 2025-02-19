@@ -5,6 +5,7 @@ class AttendanceModel extends Database {
     public function insert($data){
         $connection = parent::openConnection();
         try {
+            // EMPLOYEES
             $connection->beginTransaction();
             $getSchedule = $connection->prepare('SELECT * FROM employees
                 INNER JOIN schedules on employees.schedule_id = schedules.schedule_id
@@ -14,7 +15,7 @@ class AttendanceModel extends Database {
             $getSchedule->execute();
             $employee_schedule = $getSchedule->fetchAll(PDO::FETCH_ASSOC); 
 
-            // declaration
+            // DECLARATIONS
             $schedule_start = new DateTime($employee_schedule[0]['time_start']);
             $time_in_1 = new DateTime($data['time_in_1']);
             $time_out_1 = new DateTime($data['time_out_1']);
@@ -47,19 +48,30 @@ class AttendanceModel extends Database {
             $minutes_worked = $totalMinutes_1 + $totalMinutes_2;
 
 
-            $stmt = $connection->prepare("INSERT INTO attendances 
+            // ATTENDANCES
+            $attendance = $connection->prepare("INSERT INTO attendances 
                         (employee_id,time_in_1,time_out_1,time_in_2,time_out_2,attendance_status,total_worked_minutes,attendance_date,total_late_minutes) 
                         VALUES (?,?,?,?,?,?,?,?,?)");
-            $stmt->bindParam(1,$data['employee_id']);
-            $stmt->bindParam(2,$data['time_in_1']);
-            $stmt->bindParam(3,$data['time_out_1']);
-            $stmt->bindParam(4,$data['time_in_2']);
-            $stmt->bindParam(5,$data['time_out_2']);
-            $stmt->bindParam(6,$status);
-            $stmt->bindParam(7,$minutes_worked);
-            $stmt->bindParam(8,$data['attendance_date']);
-            $stmt->bindParam(9,$late_minutes);
-            $stmt->execute();
+            $attendance->bindParam(1,$data['employee_id']);
+            $attendance->bindParam(2,$data['time_in_1']);
+            $attendance->bindParam(3,$data['time_out_1']);
+            $attendance->bindParam(4,$data['time_in_2']);
+            $attendance->bindParam(5,$data['time_out_2']);
+            $attendance->bindParam(6,$status);
+            $attendance->bindParam(7,$minutes_worked);
+            $attendance->bindParam(8,$data['attendance_date']);
+            $attendance->bindParam(9,$late_minutes);
+            $attendance->execute();
+
+            $daily_wage = $minutes_worked * ($employee_schedule[0]['hourly_rate'] / 60);
+            $earning = $connection->prepare("INSERT INTO earnings 
+            (employee_id,daily_wages,earning_date) 
+            VALUES (?,?,?)");
+            $earning->bindParam(1,$data['employee_id']);
+            $earning->bindParam(2,$daily_wage);
+            $earning->bindParam(3,$data['attendance_date']);
+            $earning->execute();
+
             $connection->commit();
             return 200;
         } catch (PDOException $e) {

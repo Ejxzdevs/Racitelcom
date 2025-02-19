@@ -40,13 +40,13 @@ function formatDate($excelDate) {
 }
 
 if (isset($_POST['submit']) && isset($_FILES['attendance_file']) && $_FILES['attendance_file']['error'] == 0) {
-    // if (!isset($_POST['csrf_token']) || !CsrfHelper::validateToken($_POST['csrf_token'])) {
-    //     http_response_code(403);
-    //     echo "<script>alert('Invalid CSRF token!')</script>";
-    //     echo "<script>window.location.href='../view/main.php?route=attendance'</script>";
-    //     exit();
-    // }
-    // CsrfHelper::regenerateToken();
+    if (!isset($_POST['csrf_token']) || !CsrfHelper::validateToken($_POST['csrf_token'])) {
+        http_response_code(403);
+        echo "<script>alert('Invalid CSRF token!')</script>";
+        echo "<script>window.location.href='../view/main.php?route=attendance'</script>";
+        exit();
+    }
+    CsrfHelper::regenerateToken();
     $Model = new AttendanceModel();
     $attendance = new Process_attendance($Model);
 
@@ -84,19 +84,6 @@ if (isset($_POST['submit']) && isset($_FILES['attendance_file']) && $_FILES['att
                 $time_in_2 = formatTime($rowData[3]);
                 $time_out_2 = formatTime($rowData[4]);
                 $attendance_date = formatDate($rowData[5]);
-
-                // Print out the data for debugging purposes
-                echo "<pre>";
-                print_r($rowData); // This will print the entire row data
-                echo "</pre>";
-
-                // If you want to print specific variables, you can do it like this:
-                echo "Employee ID: " . $employee_id . "<br>";
-                echo "Time In 1: " . $time_in_1 . "<br>";
-                echo "Time Out 1: " . $time_out_1 . "<br>";
-                echo "Time In 2: " . $time_in_2 . "<br>";
-                echo "Time Out 2: " . $time_out_2 . "<br>";
-                echo "Attendance Date: " . $attendance_date . "<br><br>";
 
                 $data = [
                     'employee_id' => $employee_id,

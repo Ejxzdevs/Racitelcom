@@ -1,7 +1,7 @@
 <?php 
     session_start();
     // List of allowed routes (pages)
-    $allowedRoutes = ['home', 'dashboard','employee','schedule','department','position','leave','holiday','fileLeave','attendance','payroll','allowance','deduction','emp_allowance'];
+    $allowedRoutes = ['home', 'dashboard','employee','schedule','department','position','leave','holiday','fileLeave','attendance','payroll','allowance','deduction','emp_allowance','emp_deduction'];
     $route = isset($_GET['route']) ? $_GET['route'] : 'home';
     $route = strip_tags($route);
     $route = preg_replace("/[^a-zA-Z0-9_-]/", "", $route);
@@ -43,13 +43,29 @@
     </li>
     
     <!-- Management Menu -->
-    <li class="ps-6">
-        <a href="?route=emp_allowance" class="flex flex-row items-center gap-3 hover:text-blue-500">
-            <i class="fas fa-clipboard-list text-[14px]"></i>
-            <span class="path">Emp Allowance</span>
+    <li class="menu-item">
+        <a href="#" class="ms-6 toggle-menu flex flex-row items-center justify-between gap-3 hover:text-blue-500">
+            <div>
+                <i class="fas fa-cogs text-[14px]"></i>
+                <span class="path ms-1">Management</span>
+            </div> 
+            <i class="arrowIcon fas fa-arrow-right transition-transform me-4"></i>
         </a>
+        <ul class="bg-gray-600 sub-menu max-h-0 overflow-hidden transition-all duration-300 ease-out flex flex-col gap-1 ps-4">
+            <li class="ps-5 pt-1">
+                <a href="?route=emp_allowance" class="text-white block p-2 rounded">
+                    <i class="fas fa-clipboard-list text-[14px]"></i>
+                    <span class="path ms-3">Emp Allowance</span>
+                </a>
+            </li>
+            <li class="ps-6">
+                <a href="?route=emp_deduction" class="text-white block p-2 rounded">
+                    <i class="fas fa-clipboard-list text-[14px]"></i>  
+                    <span class="path ms-2">Emp Deduction</span>
+                </a>
+            </li>
+        </ul>
     </li>
-
 
     <!-- Maintenance Menu -->
     <li class="menu-item">
@@ -100,8 +116,6 @@
         </ul>
     </li>
 
-    
-    
     <li class="menu-item">
         <a href="#" class="ms-6 toggle-menu flex flex-row items-center justify-between gap-3 hover:text-blue-500">
             <div>
@@ -136,28 +150,25 @@
 </aside>
 
 <script>
-  // Select all elements with the class "toggle-menu"
   const menuItems = document.querySelectorAll('.toggle-menu');
 
-  // Add click event listener to each menu item
   menuItems.forEach(item => {
     item.addEventListener('click', function(e) {
-      e.preventDefault(); // Prevent link from navigating
+      e.preventDefault();
 
-      // Find the sub-menu under the clicked item
       const subMenu = this.nextElementSibling;
-      const arrowIcon = this.querySelector('.arrowIcon'); // Get the specific arrow icon for this menu item
+      const arrowIcon = this.querySelector('.arrowIcon');
 
       // Toggle the rotation of the arrow icon
       arrowIcon.classList.toggle('rotate-90');
 
       // Toggle the max-height to animate the expansion/collapse
       if (subMenu.classList.contains('max-h-0')) {
-        subMenu.classList.remove('max-h-0'); // Expand
-        subMenu.classList.add('max-h-96');   // Add a large max-height to make it visible
+        subMenu.classList.remove('max-h-0');
+        subMenu.classList.add('max-h-96'); 
       } else {
-        subMenu.classList.remove('max-h-96'); // Collapse
-        subMenu.classList.add('max-h-0');     // Set max-height to 0 to hide it
+        subMenu.classList.remove('max-h-96');
+        subMenu.classList.add('max-h-0');
       }
     });
   });
@@ -199,4 +210,3 @@
 
   toggleBtn.addEventListener('click', toggleSidebar);
 </script>
-

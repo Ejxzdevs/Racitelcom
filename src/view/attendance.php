@@ -62,6 +62,7 @@ if (isset($_SESSION['attendance'])) {
             <th class="py-2 text-center">Date</th>
             <th class="py-2 text-center">Status</th>
             <th class="py-2 text-center">Total Hrs Worked</th>
+            <th class="py-2 text-center">Overtime</th>
             <th class="py-2 text-center">Late</th>
             <th class="py-2 text-center">Action</th>
           </tr>
@@ -76,6 +77,9 @@ if (isset($_SESSION['attendance'])) {
             <td class="py-2 text-center"><?php echo htmlspecialchars($display['attendance_status']) ?></td>
             <td class="py-2 text-center">
                  <?php echo htmlspecialchars($display['total_worked_minutes']/60); ?>
+            </td>
+            <td class="py-2 text-center">
+                <?php echo htmlspecialchars(number_format($display['Overtime'] / 60, 2)); ?>
             </td>
             <td class="py-2 text-center">
                  <?php echo htmlspecialchars($display['total_late_minutes']/60); ?>

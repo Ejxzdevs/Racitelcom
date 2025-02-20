@@ -47,7 +47,7 @@
         <a href="#" class="ms-6 toggle-menu flex flex-row items-center justify-between gap-3 hover:text-blue-500">
             <div>
                 <i class="fas fa-cogs text-[14px]"></i>
-                <span class="path ms-1">Management</span>
+                <span class="path ms-1">Maintenance</span>
             </div> 
             <i class="arrowIcon fas fa-arrow-right transition-transform me-4"></i>
         </a>

@@ -1,7 +1,7 @@
 <?php 
     session_start();
     // List of allowed routes (pages)
-    $allowedRoutes = ['home', 'dashboard','employee','schedule','department','position','leave','holiday','fileLeave','attendance','payroll','allowance','deduction'];
+    $allowedRoutes = ['home', 'dashboard','employee','schedule','department','position','leave','holiday','fileLeave','attendance','payroll','allowance','deduction','emp_allowance'];
     $route = isset($_GET['route']) ? $_GET['route'] : 'home';
     $route = strip_tags($route);
     $route = preg_replace("/[^a-zA-Z0-9_-]/", "", $route);
@@ -43,6 +43,15 @@
     </li>
     
     <!-- Management Menu -->
+    <li class="ps-6">
+        <a href="?route=emp_allowance" class="flex flex-row items-center gap-3 hover:text-blue-500">
+            <i class="fas fa-clipboard-list text-[14px]"></i>
+            <span class="path">Emp Allowance</span>
+        </a>
+    </li>
+
+
+    <!-- Maintenance Menu -->
     <li class="menu-item">
         <a href="#" class="ms-6 toggle-menu flex flex-row items-center justify-between gap-3 hover:text-blue-500">
             <div>

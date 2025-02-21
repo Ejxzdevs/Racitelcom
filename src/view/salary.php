@@ -12,6 +12,7 @@ if (isset($_GET['data'])) {
         $data = [
             'startDate' => $decryptedData['start_date'],
             'endDate' => $decryptedData['end_date'],
+            'id' => $decryptedData['payroll_id']
         ];
         $dataResult = $getData->getPayrollInfo($data);
 ?>
@@ -40,21 +41,71 @@ if (isset($_GET['data'])) {
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Full Name</th>
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Department</th>
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Position</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Gross Salary</th>
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Worked Days</th>
+                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Basic Salary</th>
+                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">OT Salary</th>
+                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">allowances</th>
+                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Gross Salary</th>
+                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">deductions</th>
+                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Net Salary</th>
                         <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
                     <?php foreach($dataResult as $display): ?>
                         <tr class="border-b hover:bg-gray-50">
-                            <td class="px-4 py-2 text-center text-sm"><?= htmlspecialchars($display['employee_id']); ?></td>
+                            <td class="px-4 py-2 text-center text-sm"><?= htmlspecialchars($display['fullname']); ?></td>
                             <td class="px-4 py-2 text-center text-sm"><?= htmlspecialchars($display['department_name']); ?></td>
                             <td class="px-4 py-2 text-center text-sm"><?= htmlspecialchars($display['position_name']); ?></td>
-                            <td class="px-4 py-2 text-center text-sm">
-                                <?= htmlspecialchars(number_format($display['total_minutes'] * ($display['hourly_rate'] / 60), 2)); ?>
-                            </td>
                             <td class="px-4 py-2 text-center text-sm"><?= htmlspecialchars($display['worked_days']); ?></td>
+                            <td class="px-4 py-2 text-center text-sm">
+                                <?= htmlspecialchars($display['basic_salary']); ?>
+                            </td>
+                            <td class="px-4 py-2 text-center text-sm">
+                                <?= htmlspecialchars($display['ot_pay']); ?>
+                            </td>
+                            <td class="px-4 py-2 text-center text-sm">
+                                <?= htmlspecialchars($display['total_allowance'] ?? 0) ; ?>
+                            </td>
+                            <td class="px-4 py-2 text-center text-sm">
+                                <?= htmlspecialchars($display['total_allowance'] ?? 0) +  htmlspecialchars($display['basic_salary']) + htmlspecialchars($display['ot_pay']); ?>
+                            </td>
+                            <td class="px-4 py-2 text-center text-sm">
+                                <?php 
+
+                                $total_allowance = $display['total_allowance'] ?? 0;
+                                $basic_salary = $display['basic_salary'] ?? 0;
+                                $ot_pay = $display['ot_pay'] ?? 0;
+                                $total_deduction = $display['total_deduction'] ?? 0;
+
+                                $total_salary = $total_allowance + $basic_salary + $ot_pay;
+    
+                                if ($total_deduction != 0) {
+                                    $result = $total_salary / $total_deduction;
+                                } else {
+                                $result = 0;
+                                 }
+                                echo htmlspecialchars($result);
+                                ?>
+                            </td>
+                            <td class="px-4 py-2 text-center text-sm">
+                                <?php 
+
+                                $total_allowance = $display['total_allowance'] ?? 0;
+                                $basic_salary = $display['basic_salary'] ?? 0;
+                                $ot_pay = $display['ot_pay'] ?? 0;
+                                $total_deduction = $display['total_deduction'] ?? 0;
+
+                                $total_salary = $total_allowance + $basic_salary + $ot_pay;
+    
+                                if ($total_deduction != 0) {
+                                    $result = $total_salary / $total_deduction;
+                                } else {
+                                $result = 0;
+                                 }
+                                echo htmlspecialchars($total_salary) - htmlspecialchars($result);
+                                ?>
+                            </td>
                             <td class="px-4 py-2 text-center text-sm">
                                 <button onclick='openModal(<?php echo json_encode($display); ?>)' class="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600">
                                     Details

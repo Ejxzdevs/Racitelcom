@@ -6,7 +6,7 @@ class PayrollApi extends Database {
     public function getAll() {
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("SELECT * FROM payrolls");
+            $stmt = $connection->prepare("SELECT * FROM payrolls where is_deletd - 0");
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             return $data;
@@ -45,10 +45,10 @@ class PayrollApi extends Database {
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             return $data;
         } catch (PDOException $e) {
-            // $connection->rollBack();
+            $connection->rollBack();
             error_log("Error: " . $e->getMessage());
         } finally {
-            // parent::closeConnection();  
+            parent::closeConnection();  
         }
     }
 

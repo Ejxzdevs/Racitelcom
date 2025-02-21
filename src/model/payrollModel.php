@@ -61,7 +61,6 @@ class PayrollModel extends Database {
                         $insertdeduction->bindParam(3, $deduction['deduction_id']);
                         $insertdeduction->execute();
             }
-
     
             // Commit transaction
             $connection->commit();

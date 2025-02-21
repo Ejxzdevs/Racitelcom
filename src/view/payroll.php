@@ -86,14 +86,6 @@ $data = $getData->getAll();
         <input type="date" id="end_date" name="end_date" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" >
       </div>
       <div class="mb-4">
-        <label for="deduction_status" class="block text-sm font-medium text-gray-700">Type</label>
-        <select id="deduction_status" name="deduction_status" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-          <option value="" disabled selected>Deduction</option>
-            <option value="all">On</option>
-            <option value="specific">Off</option>
-        </select>
-      </div>
-      <div class="mb-4">
         <label for="pay_date" class="block text-sm font-medium text-gray-700">Pay Date</label>
         <input type="date" id="pay_date" name="pay_date" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" >
       </div>

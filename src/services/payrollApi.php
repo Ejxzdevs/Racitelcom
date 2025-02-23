@@ -41,7 +41,7 @@ class PayrollApi extends Database {
 	        ,(SELECT sum(allowance_rate) FROM allowances WHERE is_deleted = 0 AND allowance_status = 'on') AS total_allowance
 	        FROM emp_payroll_allowances WHERE payroll_id = :id) AS emp_payroll_allowances
                 ON employees.employee_id = emp_payroll_allowances.employee_id
-                EFT JOIN
+                LEFT JOIN
 	        (SELECT emp_payroll_deduction_id,deduction_id,employee_id,(SELECT sum(deduction_rate) FROM deductions WHERE is_deleted = 0 AND deduction_status = 'on') AS total_deduction FROM emp_payroll_deductions WHERE payroll_id = :id) AS emp_payroll_deductions
             ON employees.employee_id = emp_payroll_deductions.employee_id
             ");

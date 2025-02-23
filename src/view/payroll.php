@@ -47,6 +47,7 @@ $data = $getData->getAll();
                   <i class="fas fa-trash"></i>
                 </button>
               </form>
+              <a href="payslip.php">pdf</a>
                 <a href="salary.php?data=<?php echo urlencode(EncryptionHelper::encryptArrayData($display)); ?>" class="text-blue-500 hover:text-blue-700 cursor-pointer" target="_blank">
                     <i class="fas fa-eye"></i>
                 </a>

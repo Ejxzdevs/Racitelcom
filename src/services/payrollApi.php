@@ -20,16 +20,16 @@ class PayrollApi extends Database {
     public function getPayrollInfo($data){
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("SELECT * FROM
-                    (SELECT employee_id,department_id,position_id,fullname,hourly_rate FROM employees) AS employees
+            $stmt = $connection->prepare("SELECT DISTINCT  * FROM
+                    (SELECT DISTINCT employee_id,department_id,position_id,fullname,hourly_rate FROM employees) AS employees
             INNER JOIN
                     (SELECT employee_id, SUM(total_worked_minutes) AS total_minutes,COUNT(CASE WHEN attendances.attendance_status = 'Present' THEN 1 END) AS worked_days
             FROM attendances WHERE attendance_date BETWEEN :startDate AND :endDate
                 GROUP BY employee_id) AS attendances
                 ON employees.employee_id = attendances.employee_id
                 INNER JOIN
-            (SELECT employee_id,SUM(daily_wages) AS basic_salary,sum(overtime_pay) AS ot_pay FROM earnings WHERE earning_date BETWEEN :startDate AND :endDate GROUP BY employee_id) AS earnings
-                ON employees.employee_id = earnings.employee_id 
+            (SELECT employee_id AS eid,SUM(daily_wages) AS basic_salary,sum(overtime_pay) AS ot_pay FROM earnings WHERE earning_date BETWEEN :startDate AND :endDate GROUP BY employee_id) AS earnings
+                ON employees.employee_id = earnings.eid
                 INNER JOIN
 	        (SELECT department_id,department_name FROM departments) AS departments
                 ON employees.department_id = departments.department_id
@@ -55,8 +55,40 @@ class PayrollApi extends Database {
         } catch (PDOException $e) {
             error_log("Error: " . $e->getMessage());
         } finally {
+ 
+        }
+    }
+
+    public function getAllowances($id){
+        $connection = parent::openConnection();
+        try {
+            $stmt = $connection->prepare("SELECT 
+                e.fullname,
+                epd.payroll_id,
+                epd.deduction_id,
+                epd.employee_id,
+            (SELECT d.deduction_name 
+                FROM deductions d 
+                WHERE d.deduction_id = epd.deduction_id) AS deduction_name,
+                  (SELECT d.deduction_rate 
+                FROM deductions d 
+                WHERE d.deduction_id = epd.deduction_id) AS deduction_rate
+            FROM 
+                employees e
+            LEFT JOIN 
+                emp_payroll_deductions epd ON epd.employee_id = e.employee_id AND epd.payroll_id = ?
+            ");
+            $stmt->bindParam(1, $id);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+            return $data;
+        } catch (PDOException $e) {
+            error_log("Error: " . $e->getMessage());
+        } finally {
             parent::closeConnection();  
         }
+
+
     }
 
 }

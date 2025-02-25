@@ -43,7 +43,7 @@ $dataLeave = $getLeave->getAll();
             <?php echo htmlspecialchars(date('M d ', strtotime($display['start_date']))); ?> - 
             <?php echo htmlspecialchars(date('M d ', strtotime($display['end_date']))); ?>
             </td>
-            <td class="py-2 text-center"><?php echo htmlspecialchars($display['file_status']); ?></td>
+            <td class="py-2 text-center"><?php echo htmlspecialchars($display['file_status'] ?? 'Absent'); ?></td>
             <td class="py-2 flex flex-row justify-center gap-4">
               <form action="../controller/fileLeaveController.php" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
@@ -145,6 +145,15 @@ $dataLeave = $getLeave->getAll();
       <div class="mb-4">
         <label for="edit_reason" class="block text-sm font-medium text-gray-700">Reason for leave</label>
         <textarea id="edit_reason" name="reason" class="text-[12px] w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 !p-1" cols="50" rows="5" required></textarea>
+      </div>
+      <div class="mb-4">
+        <label for="edit_leave_status" class="block text-sm font-medium text-gray-700">Leave Status</label>
+        <select id="edit_leave_status" name="file_status" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <option value="" disabled selected>Update Status</option>
+          <option value="approved">Approve</option>
+          <option value="rejected">Reject</option>
+          <option value="pending">Pending</option>
+        </select>
       </div>
       <!-- Submit Button -->
       <div class="flex justify-between items-center">

@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('edit_start_date').value = getData.start_date;
                     document.getElementById('edit_end_date').value = getData.end_date;
                     document.getElementById('edit_reason').value = getData.reason;
+                    document.getElementById('edit_leave_status').value = getData.file_status;
                 } catch (e) {
                     console.error('Error parsing JSON:', e);
                 }

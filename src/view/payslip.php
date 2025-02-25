@@ -33,20 +33,48 @@ foreach ($dataResult as $display) {
     if (!in_array($display['employee_id'], $printedEmployeeIds)) {
         $pdf->AddPage();
         $pdf->Ln(2);
-        $pdf->SetFont('helvetica', 'B', 18);
-        $pdf->Cell(0, 10, 'PAYSLIP', 0, 1, 'C');
-        $pdf->SetFont('helvetica', ' ', 12);
-        $pdf->Cell(0, 5, 'Pay Period: ' . $decryptedData['start_date'] . " - " . $decryptedData['end_date'], 0, 1, 'C');
-        $pdf->Ln(5);
-        $pdf->SetFont('helvetica', 'B', 12);
-        $pdf->Cell(0, 7, 'Name: ' . $display['fullname'], 0, 1, 'L');
-        $pdf->Cell(0, 7, 'Employee ID: ' . $display['employee_id'], 0, 1, 'L');
-        $pdf->Cell(0, 7, 'Department: ' . $display['department_name'], 0, 1, 'L');
-        $pdf->Cell(0, 7, 'Position: ' . $display['position_name'], 0, 1, 'L');
-        $pdf->Cell(0, 7, 'Days: ' . $display['worked_days'], 0, 1, 'L');
+        $pdf->SetFont('helvetica', 'B', 16);
+        $pdf->Cell(0, 7, 'PAYSLIP', 0, 1, 'C');
+        $pdf->SetFont('helvetica', ' ', 10);
+        $pdf->Cell(0, 5, 'XYZ Corporation', 0, 1, 'C');
+        $pdf->Cell(0, 5, '123 Business Rd, Philippines, 10001  ', 0, 1, 'C');
+        $pdf->SetFont('helvetica', ' ', 8);
+        $pdf->Cell(0, 5, 'Period: ' . $decryptedData['start_date'] . " - " . $decryptedData['end_date'], 0, 1, 'C');
+        $pdf->Ln(8);
+        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->Cell(12, 6, 'Name:', 0, 0, 'L');
+        $pdf->SetFont('helvetica', '', 11);
+        $pdf->Cell(60, 6,  $display['fullname'], 0, 0, 'L');
+        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->Cell(40, 6, 'No. of leave:', 0, 0, 'R');
+        $pdf->SetFont('helvetica', '', 11);
+        $pdf->Cell(60, 6,  $display['total_leave'] ?? 0, 0, 1, 'L');
+
+        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->Cell(25, 6, 'Employee ID:', 0, 0, 'L');
+        $pdf->SetFont('helvetica', '', 11);
+        $pdf->Cell(60, 6,  $display['employee_id'], 0, 1, 'L');
+
+        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->Cell(24, 6, 'Department:', 0, 0, 'L');
+        $pdf->SetFont('helvetica', '', 11);
+        $pdf->Cell(60, 6,  $display['department_name'], 0, 1, 'L');
+
+        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->Cell(17, 6, 'Position:', 0, 0, 'L');
+        $pdf->SetFont('helvetica', '', 11);
+        $pdf->Cell(60, 6,  $display['position_name'], 0, 1, 'L');
+
+
+        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->Cell(12, 6, 'Days:', 0, 0, 'L');
+        $pdf->SetFont('helvetica', '', 11);
+        $pdf->Cell(60, 6,  $display['worked_days'], 0, 1, 'L');
+
         $pdf->Ln(10);
 
         // Earnings table
+        $pdf->SetFont('helvetica', 'B', 12);
         $pdf->Cell(83, 10, 'Earnings', 1, 0, 'C');
         $pdf->Cell(83, 10, 'Amount', 1, 1, 'C');
         $pdf->SetFont('helvetica', ' ', 12);
@@ -55,7 +83,7 @@ foreach ($dataResult as $display) {
         $pdf->Cell(83, 10, 'Overtime Pay', 1, 0, 'C');
         $pdf->Cell(83, 10, $display['ot_pay'], 1, 1, 'C');
         $pdf->Cell(83, 10, 'Allowance', 1, 0, 'C');
-        $pdf->Cell(83, 10, $display['total_allowance'], 1, 1, 'C');
+        $pdf->Cell(83, 10, $display['total_allowance'] ?? 0, 1, 1, 'C');
         $pdf->SetFont('helvetica', 'B', 12);
         $pdf->Cell(83, 10, 'Gross Salary', 1, 0, 'C');
         $pdf->SetFont('helvetica', ' ', 12);
@@ -97,5 +125,5 @@ foreach ($dataResult as $display) {
     }
 }
 
-$pdf->Output('example.pdf', 'I');
+$pdf->Output('example.pdf', 'D');
 ob_end_flush();

@@ -107,7 +107,7 @@ class PayrollModel extends Database {
     public function delete($id){
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("DELETE FROM payrolls WHERE payroll_id = ? ");
+            $stmt = $connection->prepare("UPDATE payrolls set is_deleted = 1 WHERE payroll_id = ? ");
             $stmt->bindParam(1, $id, PDO::PARAM_INT);
             $stmt->execute();
             return 200;

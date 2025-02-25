@@ -15,6 +15,9 @@ if (isset($_GET['data'])) {
             'id' => $decryptedData['payroll_id']
         ];
         $dataResult = $getData->getPayrollInfo($data);
+        
+        // Initialize an array to track displayed employee IDs to prevent duplicates
+        $displayedEmployeeIds = [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,157 +26,106 @@ if (isset($_GET['data'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payroll Information</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media (max-width: 768px) {
+            table {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto p-4">
-        <label class="text-xl font-semibold text-gray-700">
-            Payroll for 
-            <?php 
-            echo htmlspecialchars(date('M d, Y', strtotime($decryptedData['start_date']))); 
-            echo ' to ';
-            echo htmlspecialchars(date('M d, Y', strtotime($decryptedData['end_date']))); 
-            ?>
-        </label>
-        <div class="overflow-x-auto bg-white shadow-md rounded-lg mt-5">
-            <table class="min-w-full table-auto">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Full Name</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Department</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Position</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Worked Days</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Basic Salary</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">OT Salary</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">allowances</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Gross Salary</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">deductions</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Net Salary</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="text-gray-700">
-                    <?php foreach($dataResult as $display): ?>
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="px-4 py-2 text-center text-sm"><?= htmlspecialchars($display['fullname']); ?></td>
-                            <td class="px-4 py-2 text-center text-sm"><?= htmlspecialchars($display['department_name']); ?></td>
-                            <td class="px-4 py-2 text-center text-sm"><?= htmlspecialchars($display['position_name']); ?></td>
-                            <td class="px-4 py-2 text-center text-sm"><?= htmlspecialchars($display['worked_days']); ?></td>
-                            <td class="px-4 py-2 text-center text-sm">
-                                <?= htmlspecialchars($display['basic_salary']); ?>
-                            </td>
-                            <td class="px-4 py-2 text-center text-sm">
-                                <?= htmlspecialchars($display['ot_pay']); ?>
-                            </td>
-                            <td class="px-4 py-2 text-center text-sm">
-                                <?= htmlspecialchars($display['total_allowance'] ?? 0) ; ?>
-                            </td>
-                            <td class="px-4 py-2 text-center text-sm">
-                                <?= htmlspecialchars($display['total_allowance'] ?? 0) +  htmlspecialchars($display['basic_salary']) + htmlspecialchars($display['ot_pay']); ?>
-                            </td>
-                            <td class="px-4 py-2 text-center text-sm">
-                                <?php 
+<body class="bg-gray-50">
 
-                                $total_allowance = $display['total_allowance'] ?? 0;
-                                $basic_salary = $display['basic_salary'] ?? 0;
-                                $ot_pay = $display['ot_pay'] ?? 0;
-                                $total_deduction = $display['total_deduction'] ?? 0;
-
-                                $total_salary = $total_allowance + $basic_salary + $ot_pay;
-    
-                                if ($total_deduction != 0) {
-                                    $result = $total_salary / $total_deduction;
-                                } else {
-                                $result = 0;
-                                 }
-                                echo htmlspecialchars($result);
-                                ?>
-                            </td>
-                            <td class="px-4 py-2 text-center text-sm">
-                                <?php 
-
-                                $total_allowance = $display['total_allowance'] ?? 0;
-                                $basic_salary = $display['basic_salary'] ?? 0;
-                                $ot_pay = $display['ot_pay'] ?? 0;
-                                $total_deduction = $display['total_deduction'] ?? 0;
-
-                                $total_salary = $total_allowance + $basic_salary + $ot_pay;
-    
-                                if ($total_deduction != 0) {
-                                    $result = $total_salary / $total_deduction;
-                                } else {
-                                $result = 0;
-                                 }
-                                echo htmlspecialchars($total_salary) - htmlspecialchars($result);
-                                ?>
-                            </td>
-                            <td class="px-4 py-2 text-center text-sm">
-                                <button onclick='openModal(<?php echo json_encode($display); ?>)' class="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600">
-                                    Details
-                                </button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                    <?php } else { ?>
+    <div class="container mx-auto px-4 py-6">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h1 class="text-2xl font-semibold text-gray-800">
+                Payroll Interval: 
+                <?php 
+                    echo htmlspecialchars(date('M d, Y', strtotime($decryptedData['start_date']))); 
+                    echo ' to ';
+                    echo htmlspecialchars(date('M d, Y', strtotime($decryptedData['end_date']))); 
+                ?>
+            </h1>
+            <div class="overflow-x-auto mt-6">
+                <table class="min-w-full table-auto border-separate border-spacing-0">
+                    <thead class="bg-gray-100">
                         <tr>
-                            <td colspan="6" class="text-center text-red-500 py-4">Invalid or corrupted data.</td>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Full Name</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Department</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Position</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Worked Days</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Basic Salary</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">OT Salary</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Allowances</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Gross Salary</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Deductions</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Net Salary</th>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <?php foreach($dataResult as $display): ?>
+                            <?php 
+                            // Check if employee ID has already been displayed
+                            if (in_array($display['employee_id'], $displayedEmployeeIds)) {
+                                continue;
+                            }
+                            $displayedEmployeeIds[] = $display['employee_id'];
+                            ?>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-4 py-3 text-sm"><?= htmlspecialchars($display['fullname']); ?></td>
+                                <td class="px-4 py-3 text-sm"><?= htmlspecialchars($display['department_name']); ?></td>
+                                <td class="px-4 py-3 text-sm"><?= htmlspecialchars($display['position_name']); ?></td>
+                                <td class="px-4 py-3 text-sm"><?= htmlspecialchars($display['worked_days']); ?></td>
+                                <td class="px-4 py-3 text-sm"><?= htmlspecialchars($display['basic_salary']); ?></td>
+                                <td class="px-4 py-3 text-sm"><?= htmlspecialchars($display['ot_pay']); ?></td>
+                                <td class="px-4 py-3 text-sm"><?= htmlspecialchars($display['total_allowance'] ?? 0); ?></td>
+                                <td class="px-4 py-3 text-sm"><?= htmlspecialchars($display['total_allowance'] ?? 0) +  htmlspecialchars($display['basic_salary']) + htmlspecialchars($display['ot_pay']); ?></td>
+                                <td class="px-4 py-3 text-sm">
+                                    <?php 
+                                    $total_allowance = $display['total_allowance'] ?? 0;
+                                    $basic_salary = $display['basic_salary'] ?? 0;
+                                    $ot_pay = $display['ot_pay'] ?? 0;
+                                    $total_deduction = $display['total_deduction'] ?? 0;
+                                    $total_salary = $total_allowance + $basic_salary + $ot_pay;
+    
+                                    if ($total_deduction != 0) {
+                                        $result = $total_salary / $total_deduction;
+                                    } else {
+                                        $result = 0;
+                                     }
+                                    echo number_format(htmlspecialchars($result), 2);
+                                    ?>
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    <?php 
+                                    $total_allowance = $display['total_allowance'] ?? 0;
+                                    $basic_salary = $display['basic_salary'] ?? 0;
+                                    $ot_pay = $display['ot_pay'] ?? 0;
+                                    $total_deduction = $display['total_deduction'] ?? 0;
+                                    $total_salary = $total_allowance + $basic_salary + $ot_pay;
+    
+                                    if ($total_deduction != 0) {
+                                        $result = $total_salary / $total_deduction;
+                                    } else {
+                                        $result = 0;
+                                     }
+                                     echo number_format(htmlspecialchars($total_salary) - htmlspecialchars($result), 2);
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <?php } else { ?>
+                            <tr>
+                                <td colspan="10" class="text-center text-red-500 py-4">Invalid or corrupted data.</td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
-<!-- Modal -->
-<div id="modal" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 h-4/5 max-w-full max-h-full relative"> 
-        <div class="text-center mb-8">
-            <h2 class="text-xl font-semibold text-gray-700 mb-4">Employee Details</h2>
-            <table class="min-w-full table-auto">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">ID</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Date</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Working Hours</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Salary</th>
-                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-600">Status</th>
-                    </tr>
-                </thead>
-                <tbody class="text-gray-700">
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-center text-sm">1</td>
-                        <td class="px-4 py-2 text-center text-sm">2</td>
-                        <td class="px-4 py-2 text-center text-sm">3</td>
-                        <td class="px-4 py-2 text-center text-sm">4</td>
-                        <td class="px-4 py-2 text-center text-sm">5</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="absolute bottom-4 right-4">
-            <button onclick="closeModal()" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
-                Close
-            </button>
-        </div>
-    </div>
-</div>
-
-
-
 
 </body>
-    <script>
-        // Function to open the modal with details
-        function openModal($id) {
-         
-
-            // Show the modal
-            document.getElementById('modal').classList.remove('hidden');
-        }
-
-        // Function to close the modal
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-        }
-    </script>
 </html>
 <?php } ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../helper/base64.php';
 require_once '../services/payrollApi.php';
 $getData = new PayrollApi();
@@ -124,10 +124,9 @@ if (isset($_GET['data'])) {
     </div>
 
 <!-- Modal -->
-<!-- Modal -->
 <div id="modal" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 h-4/5 max-w-full max-h-full relative"> <!-- 80% width and height -->
-        <div class="text-center mb-8"> <!-- Added margin-bottom to give space for close button -->
+    <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 h-4/5 max-w-full max-h-full relative"> 
+        <div class="text-center mb-8">
             <h2 class="text-xl font-semibold text-gray-700 mb-4">Employee Details</h2>
             <table class="min-w-full table-auto">
                 <thead class="bg-gray-200">

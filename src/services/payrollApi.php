@@ -20,13 +20,16 @@ class PayrollApi extends Database {
     public function getPayrollInfo($data){
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("SELECT DISTINCT  * FROM
-                    (SELECT DISTINCT employee_id,department_id,position_id,fullname,hourly_rate FROM employees) AS employees
+            $stmt = $connection->prepare("SELECT * FROM
+                    (SELECT employee_id,department_id,position_id,fullname,hourly_rate FROM employees) AS employees
             INNER JOIN
                     (SELECT employee_id, SUM(total_worked_minutes) AS total_minutes,COUNT(CASE WHEN attendances.attendance_status = 'Present' THEN 1 END) AS worked_days
             FROM attendances WHERE attendance_date BETWEEN :startDate AND :endDate
                 GROUP BY employee_id) AS attendances
                 ON employees.employee_id = attendances.employee_id
+                LEFT JOIN
+            (SELECT employee_id AS fid,count(employee_id) as total_leave FROM filed_leaves WHERE created_at BETWEEN :startDate AND :endDate GROUP BY employee_id ) AS file_leaves
+                ON employees.employee_id = file_leaves.fid
                 INNER JOIN
             (SELECT employee_id AS eid,SUM(daily_wages) AS basic_salary,sum(overtime_pay) AS ot_pay FROM earnings WHERE earning_date BETWEEN :startDate AND :endDate GROUP BY employee_id) AS earnings
                 ON employees.employee_id = earnings.eid

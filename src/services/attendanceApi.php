@@ -16,7 +16,6 @@ class AttendanceApi extends Database {
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             return $data;
         } catch (PDOException $e) {
-            $connection->rollBack();
             error_log("Error: " . $e->getMessage());
         } finally {
             parent::closeConnection();  
@@ -40,7 +39,6 @@ class AttendanceApi extends Database {
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             return $data;
         } catch (PDOException $e) {
-            $connection->rollBack();
             error_log("Error: " . $e->getMessage());
         } finally {
             // parent::closeConnection();  

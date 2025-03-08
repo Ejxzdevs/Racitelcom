@@ -60,7 +60,7 @@ class EncryptionHelper
      * Decrypt a Base64-encoded string and return the original array
      *
      * @param string $encodedData Base64-encoded encrypted data
-     * @return array|null Decrypted array data or null if decryption fails
+     * @return array|null 
      */
     public static function decryptArrayData(string $encodedData): ?array
     {

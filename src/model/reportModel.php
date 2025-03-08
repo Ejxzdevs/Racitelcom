@@ -34,7 +34,6 @@ class ReportModel extends Database {
 
             $stmt->bindParam(1, $data['report_type']);
             $stmt->bindParam(2, $data['report_id'], PDO::PARAM_INT);
-
             $stmt->execute();
             $connection->commit();
             return 200;

@@ -52,7 +52,7 @@ class DeductionModel extends Database {
     public function delete($id){
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("DELETE FROM deductions WHERE deduction_id = ? ");
+            $stmt = $connection->prepare("UPDATE deductions SET is_deleted = 1 WHERE deduction_id = ? ");
             $stmt->bindParam(1, $id, PDO::PARAM_INT);
             $stmt->execute();
             return 200;

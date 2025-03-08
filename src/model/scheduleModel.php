@@ -55,7 +55,7 @@ class ScheduleModel extends Database {
     public function delete($id){
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("DELETE FROM Schedules WHERE schedule_id = ? ");
+            $stmt = $connection->prepare("UPDATE Schedules SET is_deleted = 1 WHERE schedule_id = ? ");
             $stmt->bindParam(1, $id, PDO::PARAM_INT);
             $stmt->execute();
             return 200;

@@ -51,7 +51,7 @@ class LeaveModel extends Database {
     public function delete($id){
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("DELETE FROM leaves WHERE leave_id = ? ");
+            $stmt = $connection->prepare("UPDATE leaves SET is_deleted = 1 WHERE leave_id = ? ");
             $stmt->bindParam(1, $id, PDO::PARAM_INT);
             $stmt->execute();
             return 200;

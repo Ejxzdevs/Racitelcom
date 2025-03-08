@@ -52,7 +52,7 @@ class AllowanceModel extends Database {
     public function delete($id){
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("DELETE FROM allowances WHERE allowance_id = ? ");
+            $stmt = $connection->prepare("UPDATE allowances SET is_deleted = 1 WHERE allowance_id = ? ");
             $stmt->bindParam(1, $id, PDO::PARAM_INT);
             $stmt->execute();
             return 200;

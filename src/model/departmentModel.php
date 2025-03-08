@@ -51,7 +51,7 @@ class DepartmentModel extends Database {
     public function delete($id){
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("DELETE FROM departments WHERE department_id = ? ");
+            $stmt = $connection->prepare("UPDATE departments SET is_deleted = 1 WHERE department_id = ? ");
             $stmt->bindParam(1, $id, PDO::PARAM_INT);
             $stmt->execute();
             return 200;

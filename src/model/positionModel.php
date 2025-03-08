@@ -53,7 +53,7 @@ class PositionModel extends Database {
     public function delete($id){
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("DELETE FROM positions WHERE position_id = ? ");
+            $stmt = $connection->prepare("UPDATE positions SET is_deleted = 1 WHERE position_id = ? ");
             $stmt->bindParam(1, $id, PDO::PARAM_INT);
             $stmt->execute();
             return 200;

@@ -16,7 +16,7 @@
                 <label for="edit_number" class="block text-sm font-medium text-gray-700">Email</label>
                 <div class="flex items-center border border-gray-300 rounded-md">
                     <i class="fas fa-envelope text-gray-500 pl-3"></i>
-                    <input type="text" id="edit_number" name="email" class="text-sm p-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-blue-500 pl-2" placeholder="Enter Email:" required>
+                    <input type="text" name="email" class="text-sm p-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-blue-500 pl-2" placeholder="Enter Email:" required>
                     <input type="hidden" name="login" required>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <label for="edit_address" class="block text-sm font-medium text-gray-700">Password</label>
                 <div class="flex items-center border border-gray-300 rounded-md">
                     <i class="fas fa-lock text-gray-500 pl-3"></i>
-                    <input type="text" id="edit_address" name="password" class="text-sm p-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-blue-500 pl-2" placeholder="Enter Password:" required>
+                    <input type="password"  name="password" class="text-sm p-2 w-full border-none focus:outline-none focus:ring-2 focus:ring-blue-500 pl-2" placeholder="Enter Password:" required>
                 </div>
             </div>
             <div class="flex justify-center">

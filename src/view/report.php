@@ -45,6 +45,12 @@ $data = $getData->getAll();
               <a href="javascript:void(0);" class="edit-link text-blue-500 hover:text-blue-700 cursor-pointer"  data='<?php echo htmlspecialchars(json_encode($display), ENT_QUOTES, 'UTF-8'); ?>'>
                 <i class="fas fa-edit"></i>
               </a>
+              <a href="generateReport.php?data=<?php echo $display['report_type'] ?>&type=view&date=<?php echo $display['created_at']; ?>" class="text-blue-500 hover:text-blue-700 cursor-pointer" target="_blank">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a href="generateReport.php?data=<?php echo $display['report_type'] ?>&type=download&date=<?php echo $display['created_at']; ?>" class="text-blue-500 hover:text-blue-700 cursor-pointer" target="_blank">
+                <i class="text-green-700 fas fa-download"></i>
+              </a>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -69,8 +75,6 @@ $data = $getData->getAll();
         <select id="report_type" name="report_type" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             <option value="" disabled selected>Select Type</option>
             <option value="All Employees">All Employees</option>
-            <option value="All Department">All Department</option>
-            <option value="All Position">All Position</option>
         </select>
       </div>
       <!-- Submit Button -->
@@ -102,8 +106,6 @@ $data = $getData->getAll();
         <select id="edit_report_type" name="report_type" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             <option value="" disabled selected>Select Type</option>
             <option value="All Employees">All Employees</option>
-            <option value="All Department">All Department</option>
-            <option value="All Position">All Position</option>
         </select>
       </div>
       <!-- Submit Button -->

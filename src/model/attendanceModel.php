@@ -71,8 +71,19 @@ class AttendanceModel extends Database {
             $attendance->bindParam(10,$overtime);
             $attendance->execute();
 
-            $daily_wage = $regular_hr * ($employee_schedule[0]['hourly_rate'] / 60);
-            $overtime_pay = $overtime * (($employee_schedule[0]['hourly_rate'] / 60) * 1.3);
+            // SELECT HOLIDAY
+            $getholidays = $connection->prepare('SELECT rate,holiday_date FROM holidays where holiday_date = CURDATE() AND is_deleted = 0');
+            $getholidays->execute();
+            $holidays = $getholidays->fetchAll(PDO::FETCH_ASSOC);
+     
+            if (!empty($holidays)) {
+                $holiday_rate = ($holidays[0]['rate'] / 100);
+            } else {
+                $holiday_rate = 1;
+            }
+            
+            $daily_wage = $regular_hr * (($employee_schedule[0]['hourly_rate'] / 60) * $holiday_rate);
+            $overtime_pay = $overtime * (($employee_schedule[0]['hourly_rate'] / 60) * 1.3 * $holiday_rate);
             $earning = $connection->prepare("INSERT INTO earnings 
             (employee_id,daily_wages,earning_date,Overtime_pay) 
             VALUES (?,?,?,?)");

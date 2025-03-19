@@ -40,19 +40,8 @@
 
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body class="bg-gray-100">
-
-<div class="container mx-auto py-6 px-7 block overflow-y-auto max-h-[100vh] bg-white shadow-md rounded-xl border border-gray-200">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="container mx-auto py-6 px-7 block overflow-y-auto max-h-[100vh] shadow-md rounded-xl border border-gray-200">
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Dashboard</h1>
     </div>
@@ -153,6 +142,7 @@
     </div>
 </div>
 
+<!-- Script Section -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const payrollData = <?php echo $payrollJson; ?>;
@@ -191,7 +181,3 @@
         });
     });
 </script>
-
-
-</body>
-</html>

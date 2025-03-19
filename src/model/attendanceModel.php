@@ -23,7 +23,7 @@ class AttendanceModel extends Database {
             $time_out_2 = new DateTime($data['time_out_2']);
 
             if($time_in_1 < $schedule_start){
-                $status = "Present";
+                $status = "On time";
             }else{
                 $status = "Late";
             }

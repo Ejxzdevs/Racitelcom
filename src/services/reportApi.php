@@ -22,9 +22,9 @@ class ReportApi extends Database {
         try {
             $stmt = $connection->prepare("
                 SELECT * FROM reports 
-                    WHERE is_deleted = 0 
-                    AND created_at BETWEEN DATE_FORMAT(CURRENT_DATE, '%Y-%m-01') 
-                    AND CONCAT(CURRENT_DATE, ' 23:59:59')
+                WHERE is_deleted = 0 
+                AND created_at BETWEEN DATE_FORMAT(CURRENT_DATE(), '%Y-%m-01') 
+                AND LAST_DAY(CURRENT_DATE())
             ");
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC); 
@@ -33,8 +33,9 @@ class ReportApi extends Database {
             error_log("Error: " . $e->getMessage());
             return [];
         } finally {
-            parent::closeConnection();  
+            parent::closeConnection();
         }
     }
+    
 
 }

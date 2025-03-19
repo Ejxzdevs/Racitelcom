@@ -25,4 +25,24 @@ class FileLeaveApi extends Database {
         }
     }
 
+    public function countCurrentLeave() {
+        $connection = parent::openConnection();
+        try {
+            $stmt = $connection->prepare("
+                SELECT COUNT(*) as total_leave 
+                FROM filed_leaves
+                WHERE is_deleted = 0 
+                AND start_date = CURRENT_DATE()
+            ");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['total_leave'];
+        } catch (PDOException $e) {
+            error_log("Error: " . $e->getMessage());
+            return 0;
+        } finally {
+            parent::closeConnection();
+        }
+    }
+
 }

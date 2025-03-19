@@ -73,7 +73,7 @@ $data = $getData->getAll();
         <input type="date" id="holiday_date" name="holiday_date" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
       </div>
       <div class="mb-4">
-        <label for="rate" class="block text-sm font-medium text-gray-700">holiday Name</label>
+        <label for="rate" class="block text-sm font-medium text-gray-700">Rate</label>
         <input type="text" id="rate" name="rate" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate %:" required>
       </div>
       <!-- Submit Button -->

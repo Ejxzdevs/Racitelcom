@@ -1,6 +1,7 @@
 <?php 
 require_once '../services/attendanceApi.php';
 require_once '../helper/csrf.php';
+require_once '../helper/time_format.php';
 $csrf_token = CsrfHelper::generateToken();
 
 if (isset($_SESSION['attendance'])) {
@@ -76,17 +77,13 @@ if (isset($_SESSION['attendance'])) {
             <td class="py-2 text-center"> <?php echo htmlspecialchars(date('M d Y ', strtotime($display['attendance_date']))); ?></td>
             <td class="py-2 text-center"><?php echo htmlspecialchars($display['attendance_status']) ?></td>
             <td class="py-2 text-center">
-                 <?php echo htmlspecialchars($display['total_worked_minutes']/60); ?>
+                 <?php echo htmlspecialchars(formatTime($display['total_worked_minutes'])); ?>
             </td>
             <td class="py-2 text-center">
-                <?php if($display['Overtime']){
-                    echo htmlspecialchars(number_format($display['Overtime'] / 60, 2));
-                }else{
-                  echo 0;
-                } ;?>
+            <?php echo htmlspecialchars(formatTime($display['Overtime'])); ?>
             </td>
             <td class="py-2 text-center">
-                 <?php echo htmlspecialchars($display['total_late_minutes']/60); ?>
+                <?php echo htmlspecialchars(formatTime($display['total_late_minutes'])); ?>
             </td>
             <td class="py-2 flex flex-row justify-center gap-4">
               <form action="../controller/attendanceController.php" method="POST">

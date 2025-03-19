@@ -3,8 +3,10 @@
     require_once '../services/departmentApi.php';
     require_once '../services/deductionApi.php';
     require_once '../services/allowanceApi.php';
+    require_once '../services/fileLeaveApi.php';
     require_once '../services/reportApi.php';
     require_once '../services/holidayApi.php';
+
 
     require_once '../services/earningApi.php';
 
@@ -22,8 +24,11 @@
     $getallowances = new AllowanceApi();
     $allowances = $getallowances->getAll();
 
+    $getEmpLeave = new fileLeaveApi();
+    $total_leave_today = $getEmpLeave->countCurrentLeave();
+
     $getReport = new ReportApi();
-    $total_report = $getReport->getReportsForCurrentMonth();
+    $reports = $getReport->getReportsForCurrentMonth();
 
     $getIncomingHoliday = new HolidayApi();
     $total_incoming_holiday = $getIncomingHoliday->countIncomingHolidays();
@@ -49,7 +54,7 @@
     <!-- Total Section -->
     <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 cursor-pointer">
         <!-- Total Employees -->
-        <div class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+        <div class="bg-[#E0E9E9] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-blue-600 mb-3">
                 <i class="fas fa-users"></i>
             </div>
@@ -58,7 +63,7 @@
         </div>
 
          <!-- Total Departments -->
-         <div class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+         <div class="bg-[#F3E6E4] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-green-600 mb-3">
                 <i class="fas fa-building"></i>
             </div>
@@ -67,7 +72,7 @@
         </div>
 
         <!-- Total Allowances -->
-        <div class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+        <div class="bg-[#E9F3FB] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-yellow-500 mb-3">
                 <i class="fas fa-gift"></i>
             </div>
@@ -76,7 +81,7 @@
         </div>
 
         <!-- Total Deductions -->
-        <div class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+        <div class="bg-[#D6FFF7] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-red-600 mb-3">
                 <i class="fas fa-minus-circle"></i>
             </div>
@@ -84,31 +89,38 @@
             <p class="text-2xl font-bold text-gray-900"><?php echo count($deductions) ?></p>
         </div>
 
+        <!-- Total Leave -->
+        <div class="bg-[#E9F3FB] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+            <div class="text-4xl text-green-600 mb-3">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <p class="text-lg font-semibold text-gray-700">Today Employee Leave</p>
+            <p class="text-2xl font-bold text-gray-900"><?php echo $total_leave_today ?></p>
+        </div>
+
         <!-- Total Reports -->
-        <div class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
-            <div class="text-4xl text-red-600 mb-3">
+        <div class="bg-[#E5E6E6] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+            <div class="text-4xl text-blue-600 mb-3">
                 <i class="fas fa-chart-bar"></i>
             </div>
             <p class="text-lg font-semibold text-gray-700">Montly Reports</p>
-            <p class="text-2xl font-bold text-gray-900"><?php echo count( $total_report) ?></p>
+            <p class="text-2xl font-bold text-gray-900"><?php echo count( $reports) ?></p>
         </div>
 
          <!-- Incoming Montly Holiday -->
-         <div class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
-            <div class="text-4xl text-red-600 mb-3">
+         <div class="bg-[#D6FFF7] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+            <div class="text-4xl text-yellow-500 mb-3">
                 <i class="fas fa-calendar-day"></i>
             </div>
             <p class="text-lg font-semibold text-gray-700">Incoming Holiday</p>
             <p class="text-2xl font-bold text-gray-900"><?php echo $total_incoming_holiday ?></p>
         </div>
 
-
-
     </div>
 
     <!-- Sum of each Payroll per Month -->
     <div class="mt-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Payroll Each Month</h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Total Monthly Payroll</h2>
         <div class="bg-white shadow-md rounded-xl p-6 border border-gray-200">
             <canvas id="revenueChart"></canvas>
         </div>
@@ -158,7 +170,7 @@
             data: {
                 labels: months,
                 datasets: [{
-                    label: "Total Payroll Monthly)",
+                    label: "Total Payroll Monthly",
                     data: payrollValues,
                     backgroundColor: "#141B24",
                     borderColor: "#141B24",

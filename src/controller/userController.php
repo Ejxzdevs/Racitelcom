@@ -63,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (isset($_POST['login'])) {
             $status = $user->loginUser($_POST);
             echo $status === true 
-                ? "<script>alert('Data Added Successfully')</script><script>window.location.href='../view/main.php?route=dashboard'</script>"
-                : "<script>alert('Data insertion failed')</script><script>window.location.href='../view/login.php'</script>";
+                ? "<script>alert('Login Successfully')</script><script>window.location.href='../view/main.php?route=dashboard'</script>"
+                : "<script>alert('Login failed')</script><script>window.location.href='../view/login.php'</script>";
         }
         if (isset($_POST['logout'])) {
             $status = $user->logoutUser();

@@ -49,6 +49,19 @@ $data = $getData->getAll();
               <a href="javascript:void(0);" class="edit-link text-blue-500 hover:text-blue-700 cursor-pointer"  data='<?php echo htmlspecialchars(json_encode($display), ENT_QUOTES, 'UTF-8'); ?>'>
                 <i class="fas fa-edit"></i>
               </a>
+              <form action="../controller/userController.php" method="POST">
+                <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
+                <input type="hidden" name="access_controll">
+                <input type="text" name="id" value="<?php echo htmlspecialchars( $display['id'] );?>" hidden>
+                <input type="text" name="user_status" value="<?php echo htmlspecialchars( $display['user_status'] );?>" hidden>
+                <button class="focus:outline-none cursor-pointer">
+                <?php if( $display['user_status'] === 'Enable' ):?>
+                    <i class="text-green-500 hover:text-green-700 fas fa-check-circle"></i> 
+                <?php else:?>
+                    <i class="text-red-500 hover:text-red-700 fas fa-times-circle"></i>
+                <?php endif; ?>
+                </button> 
+              </form>
             </td>
         </tr>
         <?php endforeach; ?>

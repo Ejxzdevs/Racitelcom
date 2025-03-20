@@ -75,8 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (isset($_POST['register'])) {
             $status = $user->registerUser($_POST);
             echo $status === 200 
-                ? "<script>alert('Data Added Successfully')</script><script>window.location.href='../view/register.php'</script>"
-                : "<script>alert('Data insertion failed')</script><script>window.location.href='../view/register.php'</script>";
+                ? "<script>alert('Data Added Successfully')</script><script>window.location.href='../view/main.php?route=createUser'</script>"
+                : "<script>alert('Data insertion failed')</script><script>window.location.href='../view/main.php?route=createUser'</script>";
         }
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();

@@ -55,6 +55,28 @@ class UserModel extends Database {
         }
     }
 
+    public function update($data) {
+        $connection = parent::openConnection();
+        try {
+            $connection->beginTransaction();
+            $stmt = $connection->prepare("UPDATE users
+                            SET user_type = ?
+                            WHERE id = ?");
+
+            $stmt->bindParam(1, $data['user_type']);
+            $stmt->bindParam(2, $data['id'], PDO::PARAM_INT);
+            $stmt->execute();
+            $connection->commit();
+            return 200;
+        } catch (PDOException $e) {
+            $connection->rollBack();
+            echo "Error: " . $e->getMessage();
+            return false;
+        } finally {
+            parent::closeConnection();
+        }
+    }
+
     public function delete($id){
         $connection = parent::openConnection();
         try {

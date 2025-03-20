@@ -71,8 +71,8 @@ $data = $getData->getAll();
         <input type="email" id="email" name="email" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name:" required>
       </div>
       <div class="mb-4">
-        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-        <input type="text" id="password" name="password" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
+        <label for="user_password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="text" id="user_password" name="password" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
       </div>
       <div class="mb-4">
         <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
@@ -135,15 +135,4 @@ $data = $getData->getAll();
     </form>
   </div>
 </div>
-<script src="../assets/js/allowance.js"></script>
-<script>
-  document.getElementById("addForm").addEventListener("submit", function (event) {
-    var password = document.getElementById("user_password").value;
-    var confirmPassword = document.getElementById("confirm_password").value;
-
-    if (password !== confirmPassword) {
-      event.preventDefault(); // Prevent form submission
-      alert("Passwords do not match!"); // Show error message
-    }
-  });
-</script>
+<script src="../assets/js/user.js"></script>

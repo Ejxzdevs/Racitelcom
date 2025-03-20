@@ -54,67 +54,67 @@
     <!-- Total Section -->
     <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 cursor-pointer">
         <!-- Total Employees -->
-        <div class="bg-[#E0E9E9] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+        <a href="?route=employee" class="bg-[#E0E9E9] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-blue-600 mb-3">
                 <i class="fas fa-users"></i>
             </div>
             <p class="text-lg font-semibold text-gray-700">Total Employees</p>
             <p class="text-2xl font-bold text-gray-900"><?php echo count($employees) ?></p>
-        </div>
+        </a>
 
          <!-- Total Departments -->
-         <div class="bg-[#F3E6E4] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+         <a href="?route=department" class="bg-[#F3E6E4] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-green-600 mb-3">
                 <i class="fas fa-building"></i>
             </div>
             <p class="text-lg font-semibold text-gray-700">Total Department</p>
             <p class="text-2xl font-bold text-gray-900"><?php  echo count( $departments )?></p>
-        </div>
+        </a>
 
         <!-- Total Allowances -->
-        <div class="bg-[#E9F3FB] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+        <a href="?route=allowance" class="bg-[#E9F3FB] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-yellow-500 mb-3">
                 <i class="fas fa-gift"></i>
             </div>
             <p class="text-lg font-semibold text-gray-700">Total Allowances</p>
             <p class="text-2xl font-bold text-gray-900"><?php echo count( $allowances); ?></p>
-        </div>
+        </a>
 
         <!-- Total Deductions -->
-        <div class="bg-[#D6FFF7] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+        <a href="?route=deduction" class="bg-[#D6FFF7] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-red-600 mb-3">
                 <i class="fas fa-minus-circle"></i>
             </div>
             <p class="text-lg font-semibold text-gray-700">Total Deductions</p>
             <p class="text-2xl font-bold text-gray-900"><?php echo count($deductions) ?></p>
-        </div>
+        </a>
 
         <!-- Total Leave -->
-        <div class="bg-[#E9F3FB] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+        <a href="?route=fileLeave" class="bg-[#E9F3FB] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-green-600 mb-3">
                 <i class="fas fa-calendar-check"></i>
             </div>
             <p class="text-lg font-semibold text-gray-700">Today Employee Leave</p>
             <p class="text-2xl font-bold text-gray-900"><?php echo $total_leave_today ?></p>
-        </div>
+        </a>
 
         <!-- Total Reports -->
-        <div class="bg-[#E5E6E6] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+        <a href="?route=report" class="bg-[#E5E6E6] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-blue-600 mb-3">
                 <i class="fas fa-chart-bar"></i>
             </div>
             <p class="text-lg font-semibold text-gray-700">Montly Reports</p>
             <p class="text-2xl font-bold text-gray-900"><?php echo count( $reports) ?></p>
-        </div>
+        </a>
 
          <!-- Incoming Montly Holiday -->
-         <div class="bg-[#D6FFF7] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
+        <a href="?route=holiday" class="bg-[#D6FFF7] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-yellow-500 mb-3">
                 <i class="fas fa-calendar-day"></i>
             </div>
             <p class="text-lg font-semibold text-gray-700">Incoming Holiday</p>
             <p class="text-2xl font-bold text-gray-900"><?php echo $total_incoming_holiday ?></p>
-        </div>
+        </a>
 
     </div>
 

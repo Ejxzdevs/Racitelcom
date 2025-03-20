@@ -53,6 +53,12 @@ class UserController extends SanitizeInput {
         $dataSanitized = $this->sanitizeInput($data);
         return $this->model->register($dataSanitized);
     }
+
+    // UPDATE
+    public function update($data){
+        $dataSanitized = $this->sanitizeInput($data);
+        return $this->model->update($dataSanitized);
+    }
     
     // DELETE
     public function delete($id){
@@ -84,6 +90,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 ? "<script>alert('Data Added Successfully')</script><script>window.location.href='../view/main.php?route=createUser'</script>"
                 : "<script>alert('Data insertion failed')</script><script>window.location.href='../view/main.php?route=createUser'</script>";
         }
+
+        if (isset($_POST['update'])) {
+            
+            $status = $user->update($_POST);
+            echo $status === 200 
+            ? "<script>alert('Data Updated Successfully')</script><script>window.location.href='../view/main.php?route=createUser'</script>"
+            : "<script>alert('Data updating failed')</script><script>window.location.href='../view/main.php?route=createUser'</script>";
+         }
         
 
         if (isset($_POST['delete'])) {
@@ -93,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 : "<script>alert('Data deleted failed')</script><script>window.location.href='../view/main.php?route=createUser'</script>";
             
         }
+
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }

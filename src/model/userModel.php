@@ -91,6 +91,34 @@ class UserModel extends Database {
         }
     }
 
+
+    public function updateAccessControll($data) {
+        $connection = parent::openConnection();
+        try {
+            $connection->beginTransaction();
+            if ($data['user_status'] === 'Enable') {
+                $newStatus = 'Disable';
+            } else {
+                $newStatus = 'Enable';
+            }
+            $stmt = $connection->prepare("UPDATE users
+                            SET user_status = ?
+                            WHERE id = ?");
+
+            $stmt->bindParam(1, $newStatus);
+            $stmt->bindParam(2, $data['id'], PDO::PARAM_INT);
+            $stmt->execute();
+            $connection->commit();
+            return 200;
+        } catch (PDOException $e) {
+            $connection->rollBack();
+            echo "Error: " . $e->getMessage();
+            return false;
+        } finally {
+            parent::closeConnection();
+        }
+    }
+
     
 
 }

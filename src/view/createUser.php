@@ -44,7 +44,7 @@ $data = $getData->getAll();
                 <input type="text" name="id" value="<?php echo htmlspecialchars( $display['id'] );?>" hidden>
                 <button class="text-red-500 hover:text-red-700 focus:outline-none cursor-pointer">
                   <i class="fas fa-trash"></i>
-                </button>
+                </button> 
               </form>
               <a href="javascript:void(0);" class="edit-link text-blue-500 hover:text-blue-700 cursor-pointer"  data='<?php echo htmlspecialchars(json_encode($display), ENT_QUOTES, 'UTF-8'); ?>'>
                 <i class="fas fa-edit"></i>
@@ -103,24 +103,18 @@ $data = $getData->getAll();
 <div id="editmodal" class="fixed inset-0 bg-opacity-50 flex justify-center items-center hidden" style="background-color: rgba(0, 0, 0, 0.5);">
   <div class="bg-white p-6 rounded-lg w-96 max-h-[80vh] overflow-y-auto">
     <h2 class="text-[20px] mb-4">Update allowance</h2>
-    <form id="editForm" action="../controller/allowanceController.php" method="POST">
+    <form id="editForm" action="../controller/userController.php" method="POST">
       <!-- Input Field -->
       <div class="mb-4">
         <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
         <input type="hidden" name="update">
-        <input type="hidden" id="id" name="allowance_id" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-        <label for="edit_allowance_name" class="block text-sm font-medium text-gray-700">allowance Name</label>
-        <input type="text" id="edit_allowance_name" name="allowance_name" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name:" required>
+        <input type="hidden" id="id" name="id" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
       </div>
       <div class="mb-4">
-        <label for="edit_allowance_rate" class="block text-sm font-medium text-gray-700">Amount</label>
-        <input type="text" id="edit_allowance_rate" name="allowance_rate" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
-      </div>
-      <div class="mb-4">
-        <label for="edit_allowance_status" class="block text-sm font-medium text-gray-700">Status</label>
-        <select id="edit_allowance_status" name="allowance_status" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            <option value="off">OFF</option>
-            <option value="on">ON</option>
+        <label for="edit_user_type" class="block text-sm font-medium text-gray-700">User Role</label>
+        <select id="edit_user_type" name="user_type" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <option value="admin">Admin</option>
+            <option value="hr">HR</option>
         </select>
       </div>
       <!-- Submit Button -->

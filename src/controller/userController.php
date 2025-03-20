@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $status = $user->loginUser($_POST);
             echo $status === true 
                 ? "<script>alert('Login Successfully')</script><script>window.location.href='../view/main.php?route=dashboard'</script>"
-                : "<script>alert('Login failed')</script><script>window.location.href='../view/login.php'</script>";
+                : "<script>alert('Incorrect credentials or your account is disabled. Please try again or contact support.');</script>";
         }
         if (isset($_POST['logout'])) {
             $status = $user->logoutUser();

@@ -40,20 +40,16 @@ class UserModel extends Database {
             // Hash the password before storing it
             $hashedPassword = password_hash($data['password'], PASSWORD_BCRYPT);
             
-            // Prepare the query to insert the new user
             $stmt = $connection->prepare("INSERT INTO users (user_email, user_password) VALUES (?, ?)");
             $stmt->bindParam(1, $data['email']);
             $stmt->bindParam(2, $hashedPassword);
-            
-            // Execute the query
             $stmt->execute();
             
-            return 200; // User registered successfully
+            return 200;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
             return false;
         } finally {
-            // Close the connection
             parent::closeConnection();
         }
     }

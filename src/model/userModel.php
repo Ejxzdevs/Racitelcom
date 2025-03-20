@@ -40,9 +40,10 @@ class UserModel extends Database {
             // Hash the password before storing it
             $hashedPassword = password_hash($data['password'], PASSWORD_BCRYPT);
             
-            $stmt = $connection->prepare("INSERT INTO users (user_email, user_password) VALUES (?, ?)");
+            $stmt = $connection->prepare("INSERT INTO users (user_email,user_password,user_type) VALUES (?,?,?)");
             $stmt->bindParam(1, $data['email']);
             $stmt->bindParam(2, $hashedPassword);
+            $stmt->bindParam(3, $data['user_type']);
             $stmt->execute();
             
             return 200;

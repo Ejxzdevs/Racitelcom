@@ -38,7 +38,7 @@ $data = $getData->getAll();
                 <?php echo htmlspecialchars(date('M d Y ', strtotime($display['created_at']))); ?>
             </td>
             <td class="py-2 flex flex-row justify-center gap-4">
-              <form action="../controller/allowanceController.php" method="POST">
+              <form action="../controller/userController.php" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
                 <input type="hidden" name="delete">
                 <input type="text" name="id" value="<?php echo htmlspecialchars( $display['id'] );?>" hidden>

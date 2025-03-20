@@ -22,10 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     const getData = JSON.parse(data);
                     document.getElementById('editmodal').classList.remove('hidden');
-                    document.getElementById('id').value = getData.allowance_id;
-                    document.getElementById('edit_allowance_name').value = getData.allowance_name;
-                    document.getElementById('edit_allowance_rate').value = getData.allowance_rate;
-                    document.getElementById('edit_allowance_status').value = getData.allowance_status;
+                    document.getElementById('id').value = getData.id;
+                    document.getElementById('edit_user_type').value = getData.user_type;
                 } catch (e) {
                     console.error('Error parsing JSON:', e);
                 }

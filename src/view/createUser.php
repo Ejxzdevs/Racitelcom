@@ -1,18 +1,18 @@
 <?php 
-require_once '../services/allowanceApi.php';
+require_once '../services/userApi.php';
 require_once '../helper/csrf.php';
 $csrf_token = CsrfHelper::generateToken();
-$getData = new AllowanceApi();
+$getData = new UserApi();
 $data = $getData->getAll();
 ?>
 <div class="container flex flex-col gap-2 text-[14px]"  style="padding: 0 2rem;">
     <div class="h-[4rem] flex items-center justify-between">
         <label class="text-gray-800 text-[1.3rem] font-bold">
-            Allowance List
+            Account List
         </label>
         <button id="openModal" class="py-[5px] px-2 border-1 border-gray-300 text-blue-500 hover:text-blue-700 cursor-pointer shadow-md rounded-sm">
             <i class="fas fa-plus fa"></i>
-            Allowance
+            Create User
         </button>
     </div>
     <div class="overflow-x-auto" >
@@ -20,28 +20,28 @@ $data = $getData->getAll();
         <thead class="bg-gray-200">
           <tr class="text-gray-700 border-b">
             <th class="py-2 text-center">Id</th>
-            <th class="py-2 text-center">Name</th>
-            <th class="py-2 text-center">Amount</th>
+            <th class="py-2 text-center">email</th>
+            <th class="py-2 text-center">Role</th>
+            <th class="py-2 text-center">Account Status</th>
             <th class="py-2 text-center">Created At</th>
-            <th class="py-2 text-center">Status</th>
             <th class="py-2 text-center">Action</th>
           </tr>
         </thead>
       <tbody>
         <?php foreach ($data as $display): ?>
         <tr class="border-b hover:bg-gray-50 transition-colors">
-            <td class="py-2 text-center"><?php echo htmlspecialchars($display['allowance_id']); ?></td>
-            <td class="py-2 text-center"><?php echo htmlspecialchars($display['allowance_name']); ?></td>
-            <td class="py-2 text-center"><?php echo htmlspecialchars($display['allowance_rate']); ?></td>
+            <td class="py-2 text-center"><?php echo htmlspecialchars($display['id']); ?></td>
+            <td class="py-2 text-center"><?php echo htmlspecialchars($display['user_email']); ?></td>
+            <td class="py-2 text-center"><?php echo htmlspecialchars($display['user_type']); ?></td>
+            <td class="py-2 text-center"><?php echo htmlspecialchars($display['user_status']); ?></td>
             <td class="py-2 text-center">
                 <?php echo htmlspecialchars(date('M d Y ', strtotime($display['created_at']))); ?>
             </td>
-            <td class="py-2 text-center"><?php echo htmlspecialchars($display['allowance_status']); ?></td>
             <td class="py-2 flex flex-row justify-center gap-4">
               <form action="../controller/allowanceController.php" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
                 <input type="hidden" name="delete">
-                <input type="text" name="id" value="<?php echo htmlspecialchars( $display['allowance_id'] );?>" hidden>
+                <input type="text" name="id" value="<?php echo htmlspecialchars( $display['id'] );?>" hidden>
                 <button class="text-red-500 hover:text-red-700 focus:outline-none cursor-pointer">
                   <i class="fas fa-trash"></i>
                 </button>
@@ -61,18 +61,29 @@ $data = $getData->getAll();
 <!-- ADD FORM -->
 <div id="modal" class="fixed inset-0 bg-opacity-50 flex justify-center items-center hidden" style="background-color: rgba(0, 0, 0, 0.5);">
   <div class="bg-white p-6 rounded-lg w-96 max-h-[80vh] overflow-y-auto">
-    <h2 class="text-[20px] mb-4">Create allowance</h2>
-    <form id="addForm" action="../controller/allowanceController.php" method="POST">
+    <h2 class="text-[20px] mb-4">Create User</h2>
+    <form id="addForm" action="../controller/userController.php" method="POST">
       <!-- Input Field -->
       <div class="mb-4">
         <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
-        <input type="hidden" name="insert">
-        <label for="allowance_name" class="block text-sm font-medium text-gray-700">Allowance Name</label>
-        <input type="text" id="allowance_name" name="allowance_name" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name:" required>
+        <input type="hidden" name="register">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" name="email" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name:" required>
       </div>
       <div class="mb-4">
-        <label for="allowance_rate" class="block text-sm font-medium text-gray-700">Amount</label>
-        <input type="text" id="allowance_rate" name="allowance_rate" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="text" id="password" name="password" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
+      </div>
+      <div class="mb-4">
+        <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+        <input type="text" id="confirm_password" name="confirm_password" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
+      </div>
+      <div class="mb-4">
+        <label for="user_type" class="block text-sm font-medium text-gray-700">User Role</label>
+        <select id="user_type" name="user_type" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <option value="admin">Admin</option>
+            <option value="hr">HR</option>
+        </select>
       </div>
       <!-- Submit Button -->
       <div class="flex justify-between items-center">
@@ -125,3 +136,14 @@ $data = $getData->getAll();
   </div>
 </div>
 <script src="../assets/js/allowance.js"></script>
+<script>
+  document.getElementById("addForm").addEventListener("submit", function (event) {
+    var password = document.getElementById("user_password").value;
+    var confirmPassword = document.getElementById("confirm_password").value;
+
+    if (password !== confirmPassword) {
+      event.preventDefault(); // Prevent form submission
+      alert("Passwords do not match!"); // Show error message
+    }
+  });
+</script>

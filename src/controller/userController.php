@@ -65,6 +65,13 @@ class UserController extends SanitizeInput {
         $idSanitized = filter_var($id, FILTER_VALIDATE_INT);
         return $this->model->delete(   $idSanitized);
     }
+
+    // access controll
+
+    public function accessControll($data){
+        $dataSanitized = $this->sanitizeInput($data);
+        return $this->model->updateAccessControll($dataSanitized);
+    }
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -107,6 +114,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 : "<script>alert('Data deleted failed')</script><script>window.location.href='../view/main.php?route=createUser'</script>";
             
         }
+
+        if (isset($_POST['access_controll'])) {
+            
+            $status = $user->accessControll($_POST);
+            echo $status === 200 
+            ? "<script>alert('Data Updated Successfully')</script><script>window.location.href='../view/main.php?route=createUser'</script>"
+            : "<script>alert('Data updating failed')</script><script>window.location.href='../view/main.php?route=createUser'</script>";
+         }
+
+
 
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();

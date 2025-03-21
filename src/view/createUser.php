@@ -115,7 +115,7 @@ $data = $getData->getAll();
 <!-- EDIT -->
 <div id="editmodal" class="fixed inset-0 bg-opacity-50 flex justify-center items-center hidden" style="background-color: rgba(0, 0, 0, 0.5);">
   <div class="bg-white p-6 rounded-lg w-96 max-h-[80vh] overflow-y-auto">
-    <h2 class="text-[20px] mb-4">Update allowance</h2>
+    <h2 class="text-[20px] mb-4">Update Role</h2>
     <form id="editForm" action="../controller/userController.php" method="POST">
       <!-- Input Field -->
       <div class="mb-4">

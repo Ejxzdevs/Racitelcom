@@ -3,8 +3,7 @@
         <!-- Empty section -->
     </div>
     <div class="w-1/2 h-full flex flex-row gap-5 justify-end items-center text-[#141B24]" >
-        <!-- <i class="fas fa-envelope text-[20px]"></i>
-        <i class="fas fa-bell text-[20px]"></i> -->
+        
         <div class="flex flex-row gap-2">
             <div class="text-[12px] flex flex-col justify-end items-end text-gray-700">
                 <p class="font-semibold"><?php echo $token_decoded->email ?></p>

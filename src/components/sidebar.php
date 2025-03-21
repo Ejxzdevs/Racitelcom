@@ -22,12 +22,14 @@
         </a>
     </header>
   <ul class="space-y-4 pt-5 flex flex-col gap-3">
+
     <li class="ps-6">
         <a href="?route=dashboard" class="flex flex-row items-center items-center gap-3 hover:text-blue-500" >
             <i class="fas fa-columns text-[14px]"></i>
             <span class="path">Dashboard</span>
         </a>
     </li>
+
     <li class="ps-6">
         <a href="?route=employee" class="flex flex-row items-center gap-3 hover:text-blue-500"> 
             <i class="fas fa-user text-[14px]"></i>
@@ -68,6 +70,7 @@
     </li>
 
     <!-- Maintenance Menu -->
+    <?php if($token_decoded->user_type === 'admin'):?>
     <li class="menu-item">
         <a href="#" class="ms-6 toggle-menu flex flex-row items-center justify-between gap-3 hover:text-blue-500">
             <div>
@@ -113,31 +116,23 @@
                     <span class="path ms-2">Deduction</span>
                 </a>
             </li>
+
+            <li class="ps-6">
+                <a href="?route=leave" class="text-white block p-2 rounded">
+                    <i class="fas fa-sun text-[14px]"></i>
+                    <span class="path ms-2">Leave</span>
+                </a>
+            </li>
+
         </ul>
     </li>
+    <?php endif; ?>
 
-    <li class="menu-item">
-        <a href="#" class="ms-6 toggle-menu flex flex-row items-center justify-between gap-3 hover:text-blue-500">
-            <div>
-                <i class="fas fa-file text-[14px]"></i>
-                <span class="path ms-3"> Leave</span>
-            </div> 
-            <i class="arrowIcon fas fa-arrow-right transition-transform me-4"></i>
+    <li class="ps-6">
+        <a href="?route=fileLeave" class="flex flex-row items-center gap-3 hover:text-blue-500">
+            <i class="fa fa-file-alt"></i>
+            <span class="path">Leave</span>
         </a>
-        <ul class="bg-gray-600 sub-menu max-h-0 overflow-hidden transition-all duration-300 ease-out flex flex-col gap-1 ps-4">
-            <li class="ps-5 pt-1" >
-                <a href="?route=leave" class="text-white block p-2 rounded">
-                    <i class="fas fa-list text-[14px]"></i>
-                    <span class="path ms-2"> List</span>
-                </a>
-            </li>
-            <li class="ps-6">
-                <a href="?route=fileLeave" class="text-white block p-2 rounded">
-                    <i class="fas fa-file text-[14px]"></i>  
-                    <span class="path ms-2">File</span>
-                </a>
-            </li>
-        </ul>
     </li>
 
     <li class="ps-6">
@@ -153,13 +148,15 @@
             <span class="path">Payroll</span>
         </a>
     </li>
-
+    
+    <?php if($token_decoded->user_type === 'admin'):?>
     <li class="ps-6">
         <a href="?route=createUser" class="flex flex-row items-center gap-3 hover:text-blue-500">
             <i class="fas fa-user"></i>
             <span class="path">User</span>
         </a>
     </li>
+    <?php endif; ?>
   </ul>
 </aside>
 

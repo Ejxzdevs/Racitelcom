@@ -13,10 +13,10 @@
     $page = $route . '.php';
 ?>
 <aside class="h-full border transition-all duration-300 ease-in-out w-[250px] bg-[#141B24] text-white text-[14px]" id="sidebar">
-    <header class="flex justify-between items-center pr-4 h-16 pl-4 bg-yellow-500">
-        <div class="ps-3 path ">
-            <div class="!flex !flex-row !items-center gap-2">
-                <img class="h-[30px] w-[50px] bg-white-300" src="../../src/assets/images/logo/racitel.png" alt="" srcset="">
+    <header class="flex justify-between items-center pr-4 h-16 pl-4 bg-yellow-500 ">
+        <div class="p1-3 path ">
+            <div class="!flex !flex-row !items-center gap-1">
+                <img class="h-[25px] w-[30px]" src="../../src/assets/images/logo/racitel.png" alt="" srcset="">
                 <label class="font-rubik text-[22px] text-[#141B24]">Racitelcom</label>
             </div>
         </div>

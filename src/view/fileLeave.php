@@ -28,7 +28,9 @@ $dataLeave = $getLeave->getAll();
             <th class="py-2 text-center">Date File</th>
             <th class="py-2 text-center">Days</th>
             <th class="py-2 text-center">Status</th>
+            <?php if($token_decoded->user_type === 'admin'):?>
             <th class="py-2 text-center">Action</th>
+            <?php endif; ?>
           </tr>
         </thead>
       <tbody>
@@ -44,6 +46,7 @@ $dataLeave = $getLeave->getAll();
             <?php echo htmlspecialchars(date('M d ', strtotime($display['end_date']))); ?>
             </td>
             <td class="py-2 text-center"><?php echo htmlspecialchars($display['file_status'] ?? 'Absent'); ?></td>
+            <?php if($token_decoded->user_type === 'admin'):?>
             <td class="py-2 flex flex-row justify-center gap-4">
               <form action="../controller/fileLeaveController.php" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
@@ -57,6 +60,7 @@ $dataLeave = $getLeave->getAll();
                 <i class="fas fa-edit"></i>
               </a>
             </td>
+            <?php endif; ?>
         </tr>
         <?php endforeach; ?>
         </tbody>

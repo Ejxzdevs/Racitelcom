@@ -91,7 +91,7 @@ $data = $getData->getAll();
         <input type="hidden" name="update">
         <input type="hidden" id="id" name="department_id" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Schedule Id:" required>
         <label for="department_name" class="block text-sm font-medium text-gray-700">Department Name</label>
-        <input type="text" id="edit_department_name" name="department_name" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Schedule Name:" required>
+        <input type="text" id="edit_department_name" name="department_name" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Department Name:" required>
       </div>
       <!-- Submit Button -->
       <div class="flex justify-between items-center">

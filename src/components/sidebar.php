@@ -59,13 +59,13 @@
         <ul class="bg-gray-600 sub-menu max-h-0 overflow-hidden transition-all duration-300 ease-out flex flex-col gap-1 ps-4">
             <li class="ps-5 pt-1">
                 <a href="?route=emp_allowance" class="text-white block p-2 rounded">
-                    <i class="fas fa-clipboard-list text-[14px]"></i>
-                    <span class="path ms-3">Emp Allowance</span>
+                    <i class="fas fa-gift"></i>
+                    <span class="path ms-2">Emp Allowance</span>
                 </a>
             </li>
             <li class="ps-6">
                 <a href="?route=emp_deduction" class="text-white block p-2 rounded">
-                    <i class="fas fa-clipboard-list text-[14px]"></i>  
+                    <i class="fas fa-minus-circle"></i>  
                     <span class="path ms-2">Emp Deduction</span>
                 </a>
             </li>
@@ -91,7 +91,7 @@
             </li>
             <li class="ps-6">
                 <a href="?route=position" class="text-white block p-2 rounded">
-                    <i class="fas fa-briefcase text-[14px]"></i>  
+                    <i class="fas fa-user-tie"></i>  
                     <span class="path ms-2">Position</span>
                 </a>
             </li>
@@ -103,26 +103,26 @@
             </li>
             <li class="ps-6">
                 <a href="?route=holiday" class="text-white block p-2 rounded">
-                    <i class="fas fa-sun text-[14px]"></i>
+                    <i class="fas fa-calendar-day"></i>
                     <span class="path ms-2">Holiday</span>
                 </a>
             </li>
             <li class="ps-6">
                 <a href="?route=allowance" class="text-white block p-2 rounded">
-                    <i class="fas fa-sun text-[14px]"></i>
+                    <i class="fas fa-gift"></i>
                     <span class="path ms-2">Allowance</span>
                 </a>
             </li>
             <li class="ps-6">
                 <a href="?route=deduction" class="text-white block p-2 rounded">
-                    <i class="fas fa-sun text-[14px]"></i>
+                    <i class="fas fa-minus-circle"></i>
                     <span class="path ms-2">Deduction</span>
                 </a>
             </li>
 
             <li class="ps-6">
                 <a href="?route=leave" class="text-white block p-2 rounded">
-                    <i class="fas fa-sun text-[14px]"></i>
+                    <i class="fas fa-calendar-check"></i>
                     <span class="path ms-2">Leave</span>
                 </a>
             </li>

@@ -9,7 +9,7 @@ class UserModel extends Database {
         try {
             $connection->beginTransaction();
             
-            $stmt = $connection->prepare("SELECT * FROM users WHERE user_email = ? AND user_status = 'Enable'");
+            $stmt = $connection->prepare("SELECT * FROM users WHERE user_email = ? AND user_status = 'Enable' AND is_deleted = 0");
             $stmt->bindParam(1, $data['email']);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);

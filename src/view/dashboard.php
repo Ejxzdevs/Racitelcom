@@ -62,6 +62,7 @@
             <p class="text-2xl font-bold text-gray-900"><?php echo count($employees) ?></p>
         </a>
 
+        <?php if($token_decoded->user_type === 'admin'):?>
          <!-- Total Departments -->
          <a href="?route=department" class="bg-[#F3E6E4] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-green-600 mb-3">
@@ -71,6 +72,7 @@
             <p class="text-2xl font-bold text-gray-900"><?php  echo count( $departments )?></p>
         </a>
 
+    
         <!-- Total Allowances -->
         <a href="?route=allowance" class="bg-[#E9F3FB] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
             <div class="text-4xl text-yellow-500 mb-3">
@@ -88,6 +90,7 @@
             <p class="text-lg font-semibold text-gray-700">Total Deductions</p>
             <p class="text-2xl font-bold text-gray-900"><?php echo count($deductions) ?></p>
         </a>
+        <?php endif; ?>
 
         <!-- Total Leave -->
         <a href="?route=fileLeave" class="bg-[#E9F3FB] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">
@@ -97,6 +100,7 @@
             <p class="text-lg font-semibold text-gray-700">Today Employee Leave</p>
             <p class="text-2xl font-bold text-gray-900"><?php echo $total_leave_today ?></p>
         </a>
+     
 
         <!-- Total Reports -->
         <a href="?route=report" class="bg-[#E5E6E6] shadow-md rounded-xl p-6 flex flex-col items-center border border-gray-200">

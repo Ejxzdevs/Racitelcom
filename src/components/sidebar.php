@@ -15,7 +15,7 @@
 <aside class="h-full border transition-all duration-300 ease-in-out w-[250px] bg-[#141B24] text-white text-[14px]" id="sidebar">
     <header class="flex justify-between items-center pr-4 h-16 pl-4">
         <label class="ps-3 text-[22px] font-rubik path">
-            Paymaster
+            Racitel
         </label>
         <a class="ps-3 cursor-pointer" id="toggle-btn">
             <i class="fas fa-bars"></i>

@@ -1,6 +1,6 @@
 {
     "name": "my-vendor/payroll",
-    "description": "A Paymaster is a payroll management system",
+    "description": "A payroll management system for racitelcom inc",
     "require": {
         "firebase/php-jwt": "^6.11",
         "vlucas/phpdotenv": "^5.6",

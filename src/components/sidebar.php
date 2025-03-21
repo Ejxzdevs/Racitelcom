@@ -14,9 +14,12 @@
 ?>
 <aside class="h-full border transition-all duration-300 ease-in-out w-[250px] bg-[#141B24] text-white text-[14px]" id="sidebar">
     <header class="flex justify-between items-center pr-4 h-16 pl-4">
-        <label class="ps-3 text-[22px] font-rubik path">
-            Racitel
-        </label>
+        <div class="ps-3 path ">
+            <div class="!flex !flex-row gap-2" >
+                <img class="h-[35px] w-[50px] bg-white" src="../../src/assets/images/logo/racitel.png" alt="" srcset="">
+                <label class="font-rubik text-[22px]">Racitelcom</label>
+            </div>
+        </div>
         <a class="ps-3 cursor-pointer" id="toggle-btn">
             <i class="fas fa-bars"></i>
         </a>

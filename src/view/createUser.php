@@ -81,15 +81,15 @@ $data = $getData->getAll();
         <input type="hidden" name="csrf_token" value="<?php echo $csrf_token ?>">
         <input type="hidden" name="register">
         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input type="email" id="email" name="email" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name:" required>
+        <input type="email" id="email" name="email" class="text-[14px] mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Email:" required>
       </div>
       <div class="mb-4">
         <label for="user_password" class="block text-sm font-medium text-gray-700">Password</label>
-        <input type="text" id="user_password" name="password" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
+        <input type="text" id="user_password" name="password" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Password:" required>
       </div>
       <div class="mb-4">
         <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-        <input type="text" id="confirm_password" name="confirm_password" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate:" required>
+        <input type="text" id="confirm_password" name="confirm_password" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Confirm Password:" required>
       </div>
       <div class="mb-4">
         <label for="user_type" class="block text-sm font-medium text-gray-700">User Role</label>

@@ -57,7 +57,7 @@
             <i class="arrowIcon fas fa-arrow-right transition-transform me-4"></i>
         </a>
         <ul class="bg-gray-600 sub-menu max-h-0 overflow-hidden transition-all duration-300 ease-out flex flex-col gap-1 ps-4">
-            <li class="ps-5 pt-1">
+            <li class="ps-6 pt-1">
                 <a href="?route=emp_allowance" class="text-white block p-2 rounded">
                     <i class="fas fa-gift"></i>
                     <span class="path ms-2">Emp Allowance</span>

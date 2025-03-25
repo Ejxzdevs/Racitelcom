@@ -92,7 +92,7 @@ By combining **MVC**, **Facade**, and **Dependency Injection**, the system maint
 The system employs industry-standard security practices to ensure the protection of sensitive information and prevent unauthorized access:
 
 - **JWT (JSON Web Tokens)**: Used for secure user authentication, ensuring each user is validated and authorized to access the system.
-- **Password Hashing**: User passwords are securely stored using modern hashing techniques (e.g., bcrypt), preventing the storage of plain-text passwords in the database.
+- **Password Hashing**: User passwords are securely stored using the modern bcrypt hashing algorithm, which prevents the storage of plain-text passwords in the database.
 - **Base64 Encoding**: Used for encoding certain data to ensure safe transmission over the network.
 - **CSRF Protection**: Implements **Cross-Site Request Forgery (CSRF)** protection to prevent unauthorized requests and ensure that all sensitive actions are secure and originate from authenticated users.
 - **Secure Login**: User credentials are transmitted securely over **SSL/TLS** encryption, ensuring that login data is protected from man-in-the-middle attacks.
@@ -153,4 +153,4 @@ The system employs industry-standard security practices to ensure the protection
         - Access the application via `http://localhost/Racitelcom/public` (if your public directory is in a subdirectory called public) or `http://localhost/Racitelcom/` if the index.php is in the root of the racitelcom folder.
 
 7. **Access the application:**
-    - Open your web browser and navigate to the configured URL (e.g., `http://racitelcom.test` for Laragon, or `http://localhost/Racitelcom/public` or `http://localhost/Racitelcom/` for XAMPP).
+    - Open your web browser and navigate to the configured URL, such as `http://localhost/Racitelcom/."**`

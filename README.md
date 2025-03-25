@@ -128,12 +128,13 @@ The system employs industry-standard security practices to ensure the protection
     - Create a `.env` file in the project's root directory.
     - Copy and paste the following content into your `.env` file, **adjusting the values to match your specific environment**:
         ```ini
-        DB_HOST=localhost       # Change to your database host (e.g., localhost, 127.0.0.1, your server IP)
-        DB_USERNAME=root        # Change to your database username
-        DB_PASSWORD=            # Change to your database password
-        DB_NAME=payroll          # Change to your database name if different
-        SECRET_KEY=16f8f95c72e374aed31280e1aad535c159f3be70d91a0875f6ced3ee97de84e2b6d65d77002d254106103986e3c9d1f30ff7093dd7dd73f876a4a4d0d8a748f761fb32826b36334c78c983a08d5262f82087862b8326d07915817578a6617e13ad5ad64370105b6eb5edd4b63cfff8ec409912ce9852a4f4e6e68dc5d199f0af3625a27caa293f3b4913ed7fd658e23e9389fdbeff7bba39e5fa9047bd83d8ab36dd4e82af1ad02b987e6f007a17cdfd7e73a976a98b913d8f3bb37b1ad5cb5b8c4b5396361760f287e4b0ecff4e122fe8e896b9691207b9c5ba344cdc92241e5406d3bb1c6902b79aafc7f5725660ce0f05b6ab8089a3d437d78643981a227d # Use a strong, unique secret key of your choice.
-        AES_SECRET_KEY=d5eeb8c8a8f4d3c0e48d75969d57bde731bc22f6f9468fd3e7b8d7aaf63b81c6 # Use a strong, unique AES secret key of your choice.
+        DB_HOST=localhost
+        DB_USERNAME=root
+        DB_PASSWORD=your_database_password
+        DB_NAME=payroll
+        SECRET_KEY=your_generated_secret_key
+        AES_SECRET_KEY=your_generated_aes_secret_key
+
         ```
     - **Important:** Ensure your PHP code uses a library like `vlucas/phpdotenv` to load these variables.
 

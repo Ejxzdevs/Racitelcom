@@ -97,12 +97,6 @@ The system employs industry-standard security practices to ensure the protection
 - **CSRF Protection**: Implements **Cross-Site Request Forgery (CSRF)** protection to prevent unauthorized requests and ensure that all sensitive actions are secure and originate from authenticated users.
 - **Secure Login**: User credentials are transmitted securely over **SSL/TLS** encryption, ensuring that login data is protected from man-in-the-middle attacks.
 
-### **Scalability** 📈
-- The system is designed to scale efficiently as your organization grows. It can handle an increasing number of employees, departments, and transactions without compromising performance.
-- The **database** structure and backend architecture ensure that the system can be scaled horizontally or vertically to meet growing demands, providing flexibility for future expansion.
-
----
-
 ## Installation Instructions (Racitelcom Project)
 
 1. **Clone the repository:**

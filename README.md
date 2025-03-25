@@ -146,11 +146,8 @@ The system employs industry-standard security practices to ensure the protection
 6. **Web server configuration (Laragon/XAMPP):**
     - **Laragon:**
         - Move the `Racitelcom` folder into your Laragon's `www` directory.
-        - Laragon should automatically detect the new project. If not, restart Laragon.
-        - Access the application via `http://racitelcom.test` (or the URL you've configured in Laragon).
     - **XAMPP:**
         - Move the `Racitelcom` folder into your XAMPP's `htdocs` directory.
-        - Access the application via `http://localhost/Racitelcom/public` (if your public directory is in a subdirectory called public) or `http://localhost/Racitelcom/` if the index.php is in the root of the racitelcom folder.
 
 7. **Access the application:**
     - Open your web browser and navigate to the configured URL, such as `http://localhost/Racitelcom/."**`

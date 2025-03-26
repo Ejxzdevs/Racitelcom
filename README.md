@@ -25,7 +25,7 @@ The **Racitel Payroll Management System** is a comprehensive solution designed f
 - **CRUD Operations**: Create, read, update, and delete employee listings.
 
 ### **Attendance Management**
-- **CRUD Operations**: Manage employee attendance records (create, read, update, delete).
+- **CRUD Operations**: Handle employee attendance records (add, view, modify, delete) and import attendance via CSV file.
 
 ### **Payroll Management**
 - **CRUD Operations**: Manage payroll records.

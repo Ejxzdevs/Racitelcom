@@ -6,7 +6,7 @@ class ScheduleApi extends Database {
     public function getAll() {
         $connection = parent::openConnection();
         try {
-            $stmt = $connection->prepare("SELECT * FROM Schedules WHERE is_deleted = 0");
+            $stmt = $connection->prepare("SELECT * FROM schedules WHERE is_deleted = 0");
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             return $data;

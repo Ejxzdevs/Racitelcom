@@ -1,4 +1,7 @@
-<?php require_once '../helper/check_token.php' ?>
+<?php
+session_start();
+require_once '../helper/check_token.php' 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

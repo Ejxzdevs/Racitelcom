@@ -1,7 +1,7 @@
 # Racitelcom - Payroll Management System Website
 
 ## Overview 📌
-The **Racitel Payroll Management System** is a comprehensive solution designed for **Racitelcom Inc.** to streamline payroll processing and employee attendance management. This system automates payroll calculations, ensuring accuracy and efficiency in salary generation. Integrated with biometric attendance tracking, the system simplifies recording employee work hours by importing CV files. By automating critical processes, Racitel reduces manual errors, saves time, and ensures seamless management of the workforce.
+The **Racitel Payroll Management** System is an all-in-one solution created for Racitelcom Inc. to optimize payroll processing and employee attendance tracking. This system automates salary calculations, ensuring precision and efficiency in payroll generation. It simplifies the recording of employee work hours by allowing attendance data to be imported via CSV files. By automating essential processes, Racitel minimizes manual errors, saves valuable time, and facilitates smooth workforce management.
 
 ---
 
@@ -25,7 +25,7 @@ The **Racitel Payroll Management System** is a comprehensive solution designed f
 - **CRUD Operations**: Create, read, update, and delete employee listings.
 
 ### **Attendance Management**
-- **CRUD Operations**: Manage employee attendance records (create, read, update, delete).
+- **CRUD Operations**: Handle employee attendance records (add, view, modify, delete) and import attendance via CSV file.
 
 ### **Payroll Management**
 - **CRUD Operations**: Manage payroll records.

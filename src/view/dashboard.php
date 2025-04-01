@@ -1,4 +1,4 @@
-<?php 
+<?php
     require_once '../services/EmployeeApi.php';
     require_once '../services/departmentApi.php';
     require_once '../services/deductionApi.php';
@@ -6,10 +6,7 @@
     require_once '../services/fileLeaveApi.php';
     require_once '../services/reportApi.php';
     require_once '../services/holidayApi.php';
-
-
     require_once '../services/earningApi.php';
-
     require_once '../services/attendanceApi.php';
 
     $getEmps = new EmployeeApi();
@@ -41,9 +38,6 @@
     // Get Latest Attendance
     $getAttendance = new AttendanceApi();
     $attendance = $getAttendance->getAll();
-    
-
-
 ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div class="container mx-auto py-6 px-7 block overflow-y-auto max-h-[100vh] shadow-md rounded-xl border border-gray-200">
@@ -133,7 +127,6 @@
     <!-- Latest Attendance (Scrollable) -->
     <div class="mt-6 mb-6 pb-10">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Latest Attendance</h2>
-
         <div class="overflow-y-auto max-h-[300px] bg-white shadow-md rounded-xl border border-gray-200">
             <table class="w-full text-sm text-left text-gray-700">
                 <thead class="bg-gray-100 sticky top-0">

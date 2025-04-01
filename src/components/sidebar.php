@@ -1,5 +1,4 @@
 <?php 
-    session_start();
     // List of allowed routes (pages)
     $allowedRoutes = ['home', 'dashboard','employee','schedule','department','position','leave','holiday','fileLeave','attendance','payroll','allowance','deduction','emp_allowance','emp_deduction','report','createUser'];
     $route = isset($_GET['route']) ? $_GET['route'] : 'home';

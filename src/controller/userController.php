@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once '../helper/csrf.php';
 require_once '../helper/sanitizeInput.php';
 require_once '../model/userModel.php';
@@ -21,8 +22,6 @@ class UserController extends SanitizeInput {
         $user = $this->model->login($dataSanitized);
 
         if ($user) {
-            $_SESSION['user_type'] = $user['user_type'];
-
             $issuedAt = time();
             $expirationTime = $issuedAt + 3600;
             $payload = array(

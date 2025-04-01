@@ -6,9 +6,9 @@ class Database {
     private $host,$username,$password,$dbname;
     protected $conn;
     public function __construct() {
-        $this->host = $_ENV['DB_HOST']; 
-        $this->username = $_ENV['DB_USERNAME']; 
-        $this->password = $_ENV['DB_PASSWORD']; 
+        $this->host = $_ENV['DB_HOST'];
+        $this->username = $_ENV['DB_USER']; 
+        $this->password = $_ENV['DB_PASS']; 
         $this->dbname = $_ENV['DB_NAME']; 
         try {
             $this->conn = new PDO("mysql:host=$this->host", $this->username, $this->password);

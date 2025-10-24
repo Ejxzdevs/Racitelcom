@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="flex justify-center">
-            <button type="submit" class="w-full py-2 bg-white text-gray-800 font-semibold rounded-md hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out">Login</button>
+                <button type="submit" class="w-full py-2 bg-white hover:bg-blue-600 text-gray-800 font-semibold rounded-md hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-all duration-200 ease-in-out">Login</button>
             </div>
         </form>
     </div>

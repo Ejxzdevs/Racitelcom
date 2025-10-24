@@ -8,7 +8,7 @@ The **Racitel Payroll Management** System is an all-in-one solution created for 
 
 ## Sample Website Design Highlight
 
-![Sample Design](overview.png)
+![Sample Design](highlights.png)
 
 ---
 

@@ -68,31 +68,6 @@ This platform empowers HR and administrative teams with real-time insights into 
 
 ---
 
-## Design Patterns 📌
-
-### **MVC (Model-View-Controller)**
-- **Model**: Handles data and business logic  
-- **View**: Displays user interface  
-- **Controller**: Manages interactions between Model and View  
-
-### **Facade**
-- Simplifies access to complex subsystems, improving maintainability  
-
-### **Dependency Injection**
-- Promotes loose coupling and testable, flexible code  
-
-By combining **MVC**, **Facade**, and **Dependency Injection**, the system achieves modularity, scalability, and maintainability.  
-
----
-
-## Security Features 🔒
-- **JWT Authentication** for secure user validation  
-- **Password Hashing** with bcrypt  
-- **Base64 Encoding** for safe data transmission  
-- **CSRF Protection** to prevent unauthorized actions  
-
----
-
 ## Summary 📌
 
 The Racitel Payroll Management System is a robust, secure, and scalable platform for managing payroll, attendance, and employee data. With its modular design, comprehensive features, and advanced security measures, it provides an efficient and reliable solution for workforce management at Racitelcom Inc.

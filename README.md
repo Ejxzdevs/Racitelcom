@@ -90,7 +90,6 @@ By combining **MVC**, **Facade**, and **Dependency Injection**, the system achie
 - **Password Hashing** with bcrypt  
 - **Base64 Encoding** for safe data transmission  
 - **CSRF Protection** to prevent unauthorized actions  
-- **SSL/TLS Encryption** for secure login and data transfer  
 
 ---
 
